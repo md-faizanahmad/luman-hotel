@@ -123,3 +123,17 @@
     @apply bg-background text-foreground;
   }
 }
+/* 1. Prevent Radix from adding padding to the body when menus open */
+body {
+  padding-right: 0px !important;
+}
+
+/* 2. Prevent the body from being locked (if you want to allow scrolling while menu is open) */
+body[data-scroll-locked] {
+  overflow: auto !important;
+}
+
+/* 3. Specifically target the fixed Header to prevent it from shifting */
+header {
+  margin-right: 0px !important;
+}
