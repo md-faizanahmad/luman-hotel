@@ -10,7 +10,13 @@ import { SocialProof } from "@/shared/SocialProof";
 export default function Home() {
   return (
     <main className="">
-      <Hero />
+      <Hero
+        videoSrc="Hero_Section.mp4"
+        titlePrimary="LUMAN"
+        titleSecondary="HOTEL"
+        subtitle="Luxury Rediscovered"
+        showBookingBar={true}
+      />
       <ScrollFadeWrapper>
         <FeatureShowcase />
       </ScrollFadeWrapper>

@@ -137,3 +137,16 @@ body[data-scroll-locked] {
 header {
   margin-right: 0px !important;
 }
+@media (min-width: 768px) {
+  /* Ensure interactive elements still show the custom cursor logic */
+  a,
+  button,
+  [role="button"] {
+    cursor: none;
+  }
+}
+
+button,
+a {
+  cursor: pointer;
+}
