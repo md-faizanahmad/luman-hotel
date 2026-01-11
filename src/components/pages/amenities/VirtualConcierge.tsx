@@ -2,165 +2,146 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  MessageSquare,
-  X,
-  Utensils,
-  Flower2,
-  Send,
-  Calendar,
-} from "lucide-react";
-import { useConciergeStore } from "@/store/useConciergeStore";
+import { X, Utensils, Flower2, Send, Calendar, Sparkles } from "lucide-react";
 
 export function VirtualConcierge() {
-  const { isOpen, setIsOpen, booking, setBooking } = useConciergeStore();
-  const [step, setStep] = useState<"menu" | "form">("menu");
-
-  const startBooking = (type: "Spa" | "Dining") => {
-    setBooking({ type });
-    setStep("form");
-  };
+  const [isOpen, setIsOpen] = useState(false);
+  const [view, setView] = useState<"options" | "spa" | "dining">("options");
 
   return (
-    <div className="fixed bottom-6 right-6 z-100">
+    <div className="fixed bottom-4 right-4 z-100 md:bottom-8 md:right-8">
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{
-              opacity: 0,
-              y: 20,
-              scale: 0.95,
-              transformOrigin: "bottom right",
-            }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="absolute bottom-20 right-0 w-87.5 bg-white/90 backdrop-blur-2xl border border-zinc-200 rounded-[2.5rem] shadow-2xl overflow-hidden"
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            className="mb-4 w-[calc(100vw-32px)] sm:w-[320px] bg-white/95 backdrop-blur-xl border border-zinc-200 rounded-[2rem] shadow-2xl overflow-hidden"
           >
-            {/* HEADER */}
-            <div className="bg-zinc-900 p-6 text-white flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-orange-600 flex items-center justify-center font-serif italic text-xl">
-                  L
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold">Luman Concierge</h4>
-                  <p className="text-[10px] text-zinc-400 uppercase tracking-widest">
-                    Always at your service
-                  </p>
-                </div>
+            {/* COMPACT HEADER */}
+            <div className="p-4 bg-zinc-900 text-white flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                <span className="text-[10px] font-bold uppercase tracking-widest">
+                  Luman Concierge
+                </span>
               </div>
-              <button onClick={() => setIsOpen(false)}>
-                <X className="w-5 h-5" />
+              <button
+                onClick={() => setIsOpen(false)}
+                className="p-1 hover:bg-white/10 rounded-full"
+              >
+                <X className="w-4 h-4" />
               </button>
             </div>
 
-            {/* CONTENT */}
-            <div className="p-6 h-100 overflow-y-auto space-y-4">
-              {step === "menu" ? (
-                <>
-                  <p className="text-sm text-zinc-600 bg-zinc-100 p-4 rounded-2xl rounded-tl-none">
-                    Welcome back. How may I elevate your stay today?
+            {/* CONTENT AREA */}
+            <div className="p-5 min-h-75 flex flex-col">
+              {view === "options" ? (
+                <div className="space-y-4 flex-1">
+                  <p className="text-xs font-medium text-zinc-500 leading-relaxed">
+                    How can we assist your stay today?
                   </p>
-
-                  <div className="grid grid-cols-1 gap-3 pt-4">
-                    <button
-                      onClick={() => startBooking("Spa")}
-                      className="flex items-center gap-4 p-4 rounded-2xl border border-zinc-100 hover:border-orange-200 hover:bg-orange-50/50 transition-all group text-left"
-                    >
-                      <div className="p-3 bg-zinc-50 rounded-xl group-hover:bg-white transition-colors">
-                        <Flower2 className="w-5 h-5 text-orange-600" />
-                      </div>
-                      <div>
-                        <p className="text-xs font-bold uppercase tracking-widest">
-                          Book Zen Spa
-                        </p>
-                        <p className="text-[10px] text-zinc-400 italic">
-                          Availability: Today
-                        </p>
-                      </div>
-                    </button>
-
-                    <button
-                      onClick={() => startBooking("Dining")}
-                      className="flex items-center gap-4 p-4 rounded-2xl border border-zinc-100 hover:border-orange-200 hover:bg-orange-50/50 transition-all group text-left"
-                    >
-                      <div className="p-3 bg-zinc-50 rounded-xl group-hover:bg-white transition-colors">
-                        <Utensils className="w-5 h-5 text-orange-600" />
-                      </div>
-                      <div>
-                        <p className="text-xs font-bold uppercase tracking-widest">
-                          Dinner Reservation
-                        </p>
-                        <p className="text-[10px] text-zinc-400 italic">
-                          Michelin Terrace
-                        </p>
-                      </div>
-                    </button>
+                  <div className="grid grid-cols-2 gap-2">
+                    <QuickAction
+                      icon={<Flower2 className="w-4 h-4" />}
+                      label="Spa"
+                      onClick={() => setView("spa")}
+                    />
+                    <QuickAction
+                      icon={<Utensils className="w-4 h-4" />}
+                      label="Dining"
+                      onClick={() => setView("dining")}
+                    />
                   </div>
-                </>
+                  <div className="p-3 bg-orange-50 rounded-2xl border border-orange-100 flex items-center gap-3">
+                    <Sparkles className="w-4 h-4 text-orange-600" />
+                    <p className="text-[10px] font-bold text-orange-700 uppercase">
+                      Member Exclusive: Late Checkout Available
+                    </p>
+                  </div>
+                </div>
               ) : (
                 <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
                   className="space-y-4"
                 >
                   <button
-                    onClick={() => setStep("menu")}
-                    className="text-[10px] font-bold uppercase tracking-widest text-zinc-400"
+                    onClick={() => setView("options")}
+                    className="text-[9px] font-bold text-zinc-400 uppercase"
                   >
-                    ← Back to Services
+                    ← Back
                   </button>
-                  <h5 className="text-xl font-serif">Reserve {booking.type}</h5>
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3 p-3 bg-zinc-50 rounded-xl border border-zinc-100">
-                      <Calendar className="w-4 h-4 text-zinc-400" />
-                      <input
-                        type="date"
-                        className="bg-transparent text-xs font-bold outline-none w-full"
-                      />
+                  <h4 className="font-serif text-lg lowercase italic">
+                    Reserve {view}
+                  </h4>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 p-3 bg-zinc-50 rounded-xl">
+                      <Calendar className="w-3 h-3 text-zinc-400" />
+                      <span className="text-[10px] font-bold">
+                        Select Preferred Date
+                      </span>
                     </div>
-                    <div className="flex gap-2">
-                      {["18:00", "19:30", "21:00"].map((t) => (
-                        <button
-                          key={t}
-                          className="flex-1 py-2 rounded-lg border border-zinc-200 text-[10px] font-bold hover:bg-zinc-900 hover:text-white transition-all"
-                        >
-                          {t}
-                        </button>
-                      ))}
-                    </div>
+                    <button className="w-full py-3 bg-zinc-900 text-white rounded-xl text-[10px] font-bold uppercase tracking-widest">
+                      Check Availability
+                    </button>
                   </div>
-                  <button className="w-full py-4 bg-orange-600 text-white rounded-2xl font-bold text-sm shadow-lg shadow-orange-200">
-                    Confirm Request
-                  </button>
                 </motion.div>
               )}
-            </div>
 
-            {/* INPUT AREA */}
-            <div className="p-4 bg-zinc-50 flex gap-2 border-t border-zinc-100">
-              <input
-                placeholder="Type a message..."
-                className="flex-1 bg-white border border-zinc-200 rounded-full px-4 text-xs outline-none focus:ring-1 ring-orange-500 transition-all"
-              />
-              <button className="bg-zinc-900 p-2.5 rounded-full text-white hover:bg-orange-600 transition-colors">
-                <Send className="w-4 h-4" />
-              </button>
+              {/* MINI INPUT */}
+              <div className="mt-auto pt-4 flex gap-2">
+                <input
+                  type="text"
+                  placeholder="Ask anything..."
+                  className="flex-1 bg-zinc-100 rounded-full px-4 py-2 text-[11px] outline-none focus:ring-1 ring-orange-500"
+                />
+                <button className="p-2 bg-orange-600 text-white rounded-full">
+                  <Send className="w-3 h-3" />
+                </button>
+              </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* FLOATING TRIGGER */}
+      {/* COMPACT TRIGGER */}
       <motion.button
-        whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="w-16 h-16 bg-zinc-950 text-white rounded-full flex items-center justify-center shadow-2xl relative"
+        className="flex items-center gap-2 bg-zinc-950 text-white pl-4 pr-2 py-2 rounded-full shadow-2xl"
       >
-        <MessageSquare className="w-6 h-6" />
-        <span className="absolute -top-1 -right-1 w-4 h-4 bg-orange-600 rounded-full border-2 border-white animate-pulse" />
+        <span className="text-[10px] font-bold uppercase tracking-widest hidden sm:block">
+          Concierge
+        </span>
+        <div className="w-8 h-8 bg-orange-600 rounded-full flex items-center justify-center">
+          <Sparkles className="w-4 h-4" />
+        </div>
       </motion.button>
     </div>
+  );
+}
+
+function QuickAction({
+  icon,
+  label,
+  onClick,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      className="flex flex-col items-center justify-center gap-2 p-4 rounded-2xl bg-zinc-50 border border-zinc-100 hover:border-orange-200 hover:bg-white transition-all group"
+    >
+      <div className="text-zinc-400 group-hover:text-orange-600 transition-colors">
+        {icon}
+      </div>
+      <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-600">
+        {label}
+      </span>
+    </button>
   );
 }

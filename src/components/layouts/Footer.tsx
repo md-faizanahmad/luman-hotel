@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
@@ -9,8 +10,8 @@ import {
   Mail,
   Phone,
   MapPin,
+  ArrowUpRight,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const footerLinks = {
   about: [
@@ -36,112 +37,137 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-zinc-950 text-zinc-300 pt-16 pb-8 border-t border-zinc-800">
-      <div className="container mx-auto px-4 md:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-          {/* BRAND & NEWSLETTER */}
-          <div className="flex flex-col gap-6">
-            <Link
-              href="/"
-              className="text-2xl font-serif font-bold tracking-tight text-white"
-            >
-              LUMAN<span className="font-light text-zinc-500">HOTEL</span>
-            </Link>
-            <p className="text-sm leading-relaxed max-w-xs">
-              Experience the pinnacle of luxury and comfort. Subscribe to our
-              newsletter for exclusive offers and seasonal updates.
-            </p>
-            <div className="flex gap-2">
-              <input
-                type="email"
-                placeholder="Email address"
-                className="bg-zinc-900 border-zinc-800 text-sm px-4 py-2 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-600 flex-1"
-              />
-              <Button size="sm" className="bg-orange-600 hover:bg-orange-700">
-                Join
-              </Button>
-            </div>
-          </div>
+    <footer className="relative bg-zinc-950 text-zinc-400 pt-32 pb-12 overflow-hidden border-t border-white/5">
+      {/* 1. BACKGROUND WATERMARK - Visual Depth */}
+      <div className="absolute -bottom-10 left-0 right-0 pointer-events-none select-none overflow-hidden">
+        <motion.h2
+          initial={{ y: 100, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 0.03 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+          className="text-[25vw] font-serif text-white leading-none text-center"
+        >
+          LUMAN
+        </motion.h2>
+      </div>
 
-          {/* DYNAMIC LINKS */}
-          <div className="grid grid-cols-2 gap-8 lg:col-span-2">
-            <div>
-              <h4 className="text-white font-semibold mb-6">Explore</h4>
-              <ul className="space-y-4 text-sm">
-                {footerLinks.about.map((link) => (
-                  <li key={link.name}>
-                    <Link
-                      href={link.href}
-                      className="hover:text-orange-500 transition-colors"
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-white font-semibold mb-6">Experiences</h4>
-              <ul className="space-y-4 text-sm">
-                {footerLinks.services.map((link) => (
-                  <li key={link.name}>
-                    <Link
-                      href={link.href}
-                      className="hover:text-orange-500 transition-colors"
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          {/* CONTACT INFO */}
-          <div>
-            <h4 className="text-white font-semibold mb-6">Contact Us</h4>
-            <ul className="space-y-4 text-sm">
-              <li className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-orange-600 shrink-0" />
-                <span>
-                  123 Luxury Avenue, Coastal Road,
-                  <br />
-                  Mumbai, MH 400001
+      <div className="container relative z-10 mx-auto px-6 md:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-24">
+          {/* BRAND & INTRO */}
+          <div className="lg:col-span-4 space-y-8">
+            <Link href="/" className="group block">
+              <span className="text-3xl font-serif font-bold tracking-tighter text-white">
+                LUMAN
+                <span className="italic font-light text-zinc-600 group-hover:text-orange-600 transition-colors">
+                  HOTEL
                 </span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-orange-600 shrink-0" />
-                <span>+91 22 1234 5678</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-orange-600 shrink-0" />
-                <span>reservations@lumanhotel.com</span>
-              </li>
-            </ul>
-            <div className="flex gap-4 mt-8">
+              </span>
+            </Link>
+            <p className="text-sm leading-relaxed max-w-xs font-light tracking-wide">
+              An architectural sanctuary where raw coastal nature meets refined
+              luxury. Experience serenity redesigned.
+            </p>
+
+            {/* SOCIALS - Minimalist style */}
+            <div className="flex gap-5 pt-4">
               {[Instagram, Facebook, Twitter].map((Icon, idx) => (
                 <motion.a
                   key={idx}
                   href="#"
-                  whileHover={{ y: -3 }}
-                  className="bg-zinc-900 p-2 rounded-full hover:text-white transition-colors"
+                  whileHover={{ y: -5, color: "#fff" }}
+                  className="p-3 rounded-full border border-white/10 hover:border-orange-600 transition-colors"
                 >
-                  <Icon className="w-5 h-5" />
+                  <Icon className="w-4 h-4" />
                 </motion.a>
               ))}
             </div>
           </div>
+
+          {/* DYNAMIC LINKS - Better Hierarchy */}
+          <div className="lg:col-span-4 grid grid-cols-2 gap-8">
+            <div className="space-y-6">
+              <h4 className="text-[10px] font-bold text-orange-600 uppercase tracking-[0.3em]">
+                Explore
+              </h4>
+              <ul className="space-y-4">
+                {footerLinks.about.map((link) => (
+                  <li key={link.name}>
+                    <Link
+                      href={link.href}
+                      className="text-sm hover:text-white transition-all flex items-center group"
+                    >
+                      <span className="w-0 group-hover:w-3 h-px bg-orange-600 mr-0 group-hover:mr-2 transition-all opacity-0 group-hover:opacity-100" />
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="space-y-6">
+              <h4 className="text-[10px] font-bold text-orange-600 uppercase tracking-[0.3em]">
+                Experiences
+              </h4>
+              <ul className="space-y-4">
+                {footerLinks.services.map((link) => (
+                  <li key={link.name}>
+                    <Link
+                      href={link.href}
+                      className="text-sm hover:text-white transition-all flex items-center group"
+                    >
+                      <span className="w-0 group-hover:w-3 h-px bg-orange-600 mr-0 group-hover:mr-2 transition-all opacity-0 group-hover:opacity-100" />
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* NEWSLETTER - High End Boutique Style */}
+          <div className="lg:col-span-4 space-y-8">
+            <h4 className="text-[10px] font-bold text-orange-600 uppercase tracking-[0.3em]">
+              The Inner Circle
+            </h4>
+            <p className="text-sm font-light">
+              Join for private invitations and seasonal reveals.
+            </p>
+            <div className="relative border-b border-white/10 pb-2 group focus-within:border-orange-600 transition-colors">
+              <input
+                type="email"
+                placeholder="Email address"
+                className="bg-transparent text-lg font-serif italic text-white w-full outline-none placeholder:text-zinc-700"
+              />
+              <button className="absolute right-0 top-1/2 -translate-y-1/2 text-orange-600 hover:text-white transition-colors">
+                <ArrowUpRight className="w-6 h-6" />
+              </button>
+            </div>
+          </div>
         </div>
 
-        {/* BOTTOM BAR */}
-        <div className="pt-8 border-t border-zinc-900 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
-          <p>© {currentYear} Luman Hotel Group. All rights reserved.</p>
-          <div className="flex gap-6">
+        {/* CONTACT BAR - Clean Row */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-12 border-y border-white/5 text-[11px] font-bold uppercase tracking-widest text-zinc-500">
+          <div className="flex items-center gap-4 group cursor-pointer hover:text-white transition-colors">
+            <MapPin className="w-4 h-4 text-orange-600" />
+            <span>Coastal Road, Mumbai, MH</span>
+          </div>
+          <div className="flex items-center gap-4 group cursor-pointer hover:text-white transition-colors justify-start md:justify-center">
+            <Phone className="w-4 h-4 text-orange-600" />
+            <span>+91 22 1234 5678</span>
+          </div>
+          <div className="flex items-center gap-4 group cursor-pointer hover:text-white transition-colors justify-start md:justify-end">
+            <Mail className="w-4 h-4 text-orange-600" />
+            <span>reservations@luman.com</span>
+          </div>
+        </div>
+
+        {/* LEGAL BOTTOM */}
+        <div className="pt-12 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-700">
+          <p>© {currentYear} LUMAN HOTEL GROUP. ALL RIGHTS RESERVED.</p>
+          <div className="flex gap-8">
             {footerLinks.legal.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="hover:text-white transition-colors"
+                className="hover:text-zinc-400 transition-colors"
               >
                 {link.name}
               </Link>

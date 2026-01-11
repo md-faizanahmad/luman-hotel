@@ -3,6 +3,7 @@ import ScrollFadeWrapper from "@/components/motion/ScrollFadeWrapper";
 import FeatureShowcase from "@/components/hotel/FeatureShowcase";
 import Hero from "@/shared/Hero";
 import { AmenitiesGrid } from "@/components/pages/amenities/AmenitiesGrid";
+import { AmenitiesTimeline } from "@/components/pages/amenities/AmenitiesTimeline";
 
 export default function AmenitiesPage() {
   return (
@@ -20,7 +21,7 @@ export default function AmenitiesPage() {
       <div className="bg-zinc-950 py-10">
         <AmenitiesMarquee />
       </div>
-
+      <AmenitiesTimeline />
       {/* 2. Visual Deep Dive */}
       <ScrollFadeWrapper>
         <AmenitiesGrid />
