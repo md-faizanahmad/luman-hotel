@@ -1,10 +1,10 @@
 import { FilterBar } from "@/components/hotel/FilterBar";
 import RoomGrid from "@/components/hotel/RoomGrid";
-import RoomDetailModal from "@/components/hotel/RoomDetailModal";
 import RoomEntrance from "@/components/pages/rooms/RoomEntrance";
 import RoomComparison from "@/components/pages/rooms/RoomComparison";
 import Hero from "@/shared/Hero";
 import VirtualTour from "@/components/pages/rooms/VirtualTour";
+import RoomDetailModal from "@/components/pages/rooms/RoomDetailModal";
 
 // This is a Server Component
 export default async function RoomsPage() {

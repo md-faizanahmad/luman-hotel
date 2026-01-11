@@ -17,7 +17,7 @@ export function FilterBar() {
   const [activeTab, setActiveTab] = useState("All Suites");
 
   return (
-    <div className="sticky top-20 z-40 w-full bg-white/80 backdrop-blur-md border-y border-zinc-100 py-3">
+    <div className=" z-40 w-full bg-white/80 backdrop-blur-md border-y border-zinc-100 py-3">
       <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
         {/* CATEGORY TABS */}
         <div className="flex items-center gap-2 overflow-x-auto hide-scrollbar no-scrollbar">

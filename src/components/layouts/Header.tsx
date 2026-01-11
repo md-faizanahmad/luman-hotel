@@ -110,9 +110,9 @@ export default function Header() {
           <Sheet>
             <SheetTrigger asChild>
               <button
-                className={`md:hidden p-2 rounded-full transition-colors ${
+                className={`md:hidden p-2 rounded-3xl transition-colors ${
                   scrolled
-                    ? "text-zinc-900 hover:bg-zinc-100"
+                    ? "text-white cursor-pointer hover:bg-orange-400"
                     : "text-white hover:bg-white/10"
                 }`}
               >

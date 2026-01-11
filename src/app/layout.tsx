@@ -4,6 +4,7 @@ import { Inter, Playfair_Display } from "next/font/google"; // Modern font pairi
 import "./globals.css";
 import Header from "@/components/layouts/Header";
 import Footer from "@/components/layouts/Footer";
+import { VirtualConcierge } from "@/components/pages/amenities/VirtualConcierge";
 
 // Setup Fonts
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -29,7 +30,7 @@ export default function RootLayout({
       >
         {/* Header appears on every page */}
         <Header />
-
+        <VirtualConcierge />
         {/* The 'children' is where your individual page.tsx content loads */}
         <main>{children}</main>
 

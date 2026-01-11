@@ -34,3 +34,30 @@ export const MOCK_BOOKINGS = [
   { guest: "A guest from Mumbai", room: "Royal Penthouse", time: "just now" },
   { guest: "Someone from Dubai", room: "Garden Villa", time: "15 mins ago" },
 ];
+
+export const ROOM_IMAGES = [
+  {
+    id: 1,
+    link: "https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1974",
+  },
+  {
+    id: 2,
+    link: "https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1974",
+  },
+  {
+    id: 3,
+    link: "https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1974",
+  },
+  {
+    id: 4,
+    link: "https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=2070",
+  },
+  {
+    id: 5,
+    link: "https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1974",
+  },
+  {
+    id: 6,
+    link: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070",
+  },
+];
