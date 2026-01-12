@@ -4,7 +4,6 @@ import React, { useRef, useState } from "react";
 import {
   motion,
   useScroll,
-  useTransform,
   AnimatePresence,
   useMotionValueEvent,
 } from "framer-motion";
@@ -80,7 +79,7 @@ export function AmenitiesTimeline() {
               className="object-cover brightness-[0.35]"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-zinc-950" />
+            <div className="absolute inset-0 bg-linear-to-b from-black/40 via-transparent to-zinc-950" />
           </motion.div>
         </AnimatePresence>
 

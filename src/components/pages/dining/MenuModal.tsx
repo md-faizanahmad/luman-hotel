@@ -22,7 +22,7 @@ export function MenuModal({
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[200] flex items-end md:items-center justify-center p-0 md:p-8">
+        <div className="fixed inset-0 z-200 flex items-end md:items-center justify-center p-0 md:p-8">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -40,7 +40,7 @@ export function MenuModal({
           >
             <button
               onClick={onClose}
-              className="absolute top-6 right-6 z-[210] p-3 bg-zinc-100 hover:bg-zinc-900 hover:text-white rounded-full transition-all"
+              className="absolute top-6 right-6 z-210 p-3 bg-zinc-100 hover:bg-zinc-900 hover:text-white rounded-full transition-all"
             >
               <X className="w-5 h-5" />
             </button>
@@ -53,7 +53,7 @@ export function MenuModal({
                 fill
                 className="object-cover brightness-[0.7]"
               />
-              <div className="absolute inset-0 p-10 flex flex-col justify-end text-white bg-gradient-to-t from-black/80 via-transparent to-transparent">
+              <div className="absolute inset-0 p-10 flex flex-col justify-end text-white bg-linear-to-t from-black/80 via-transparent to-transparent">
                 <Sparkles className="w-6 h-6 text-orange-500 mb-4" />
                 <h4 className="text-3xl font-serif italic">{venue.name}</h4>
               </div>

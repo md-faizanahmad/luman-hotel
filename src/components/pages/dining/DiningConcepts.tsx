@@ -74,7 +74,7 @@ export function DiningConcepts() {
 
         {/* LayoutGroup ensures smooth width transitions between siblings */}
         <LayoutGroup>
-          <div className="flex flex-row overflow-x-auto md:overflow-visible pb-10 gap-4 snap-x snap-mandatory hide-scrollbar h-[500px] md:h-[600px]">
+          <div className="flex flex-row overflow-x-auto md:overflow-visible pb-10 gap-4 snap-x snap-mandatory hide-scrollbar h-125 md:h-150">
             {VENUES.map((venue) => (
               <motion.div
                 key={venue.id}
