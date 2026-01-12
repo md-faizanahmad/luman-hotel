@@ -5,6 +5,7 @@ import "./globals.css";
 import Header from "@/components/layouts/Header";
 import Footer from "@/components/layouts/Footer";
 import { VirtualConcierge } from "@/components/pages/amenities/VirtualConcierge";
+import ScrollToTop from "@/shared/ScrollToTop";
 
 // Setup Fonts
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -35,6 +36,7 @@ export default function RootLayout({
         <main>{children}</main>
 
         {/* Footer appears on every page */}
+        <ScrollToTop />
         <Footer />
       </body>
     </html>
