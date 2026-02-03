@@ -7,12 +7,17 @@ import { BookingDates } from "./BookingDates";
 import { GuestSelector } from "./GuestSelector";
 import { BookingSummary } from "../BookingSummary";
 import { MAX_GUESTS } from "@/utils/booking";
+import { RoomType } from "@/types/rooms";
+import { ROOMS } from "@/data/rooms";
+import { RoomSelector } from "./RoomSelector";
+import { Separator } from "./Separator";
 
 export function BookingBar() {
   const [checkIn, setCheckIn] = useState<Date | undefined>();
   const [checkOut, setCheckOut] = useState<Date | undefined>();
   const [guests, setGuests] = useState<number>(2);
   const [isSummaryOpen, setIsSummaryOpen] = useState(false);
+  const [room, setRoom] = useState<RoomType | undefined>();
 
   const isGuestLimitExceeded = guests > MAX_GUESTS;
 
@@ -31,6 +36,9 @@ export function BookingBar() {
             onCheckInChange={setCheckIn}
             onCheckOutChange={setCheckOut}
           />
+          <RoomSelector rooms={ROOMS} selectedRoom={room} onSelect={setRoom} />
+
+          <Separator />
 
           {/* GUEST SELECTION */}
           <GuestSelector guests={guests} onChange={setGuests} />
@@ -53,7 +61,13 @@ export function BookingBar() {
       <BookingSummary
         isOpen={isSummaryOpen}
         onClose={() => setIsSummaryOpen(false)}
-        data={{ checkIn, checkOut, guests, basePrice: 450 }}
+        data={{
+          checkIn,
+          checkOut,
+          guests,
+          room,
+          basePrice: room?.price ?? 0,
+        }}
       />
     </div>
   );

@@ -11,7 +11,8 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { format, differenceInDays } from "date-fns";
-import { useCurrencyStore } from "@/store/useCurrencyStore";
+import { RoomType } from "@/types/rooms";
+import { useRouter } from "next/navigation";
 
 interface BookingSummaryProps {
   isOpen: boolean;
@@ -20,25 +21,83 @@ interface BookingSummaryProps {
     checkIn?: Date;
     checkOut?: Date;
     guests: number;
+    room?: RoomType;
     basePrice: number;
   };
 }
 
 export function BookingSummary({ isOpen, onClose, data }: BookingSummaryProps) {
-  const { activeCurrency } = useCurrencyStore();
-
+  // Calculate number of nights (minimum 1)
   const nights =
     data.checkIn && data.checkOut
-      ? differenceInDays(data.checkOut, data.checkIn)
+      ? Math.max(differenceInDays(data.checkOut, data.checkIn), 1)
       : 1;
+  const GST_RATE = 0.12; // 12% GST (standard for budget hotels)
+  // Use room price as source of truth
+  const basePrice = data.room?.price ?? data.basePrice;
+  // const totalAmount = basePrice * nights;
+  // Base room total (without tax)
+  const roomTotal = basePrice * nights;
 
-  const convertedBase = Math.round(data.basePrice * activeCurrency.rate);
-  const totalAmount = convertedBase * (nights > 0 ? nights : 1);
+  // GST amount
+  const gstAmount = Math.round(roomTotal * GST_RATE);
+
+  // Final payable amount
+  const router = useRouter();
+  const totalAmount = roomTotal + gstAmount;
+  const handleConfirm = async () => {
+    console.log("ENV DEBUG:", {
+      BOOKING_EMAIL_USER: process.env.BOOKING_EMAIL_USER,
+      BOOKING_EMAIL_PASS_EXISTS: !!process.env.BOOKING_EMAIL_PASS,
+      HOTEL_OWNER_EMAIL: process.env.HOTEL_OWNER_EMAIL,
+    });
+    if (!data.room || !data.checkIn || !data.checkOut) {
+      alert("Missing booking details");
+      return;
+    }
+
+    // ---- BUILD PAYLOAD (THIS WAS MISSING) ----
+    const payload = {
+      checkIn: data.checkIn.toISOString(),
+      checkOut: data.checkOut.toISOString(),
+      guests: data.guests,
+      nights,
+      room: data.room,
+      roomTotal,
+      gstAmount,
+      totalAmount,
+    };
+
+    try {
+      const res = await fetch("/api/booking/confirm", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const text = await res.text();
+      if (!text) throw new Error("Empty server response");
+
+      const json: { redirectUrl?: string; message?: string } = JSON.parse(text);
+
+      if (!res.ok) {
+        throw new Error(json.message || "Booking failed");
+      }
+
+      if (json.redirectUrl) {
+        router.push(json.redirectUrl);
+      }
+    } catch (err) {
+      console.error("CONFIRM ERROR:", err);
+      alert("Unable to process booking. Please try again.");
+    }
+  };
 
   return (
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-600 flex items-center justify-center p-4">
+          {/* BACKDROP */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -47,13 +106,14 @@ export function BookingSummary({ isOpen, onClose, data }: BookingSummaryProps) {
             className="absolute inset-0 bg-zinc-950/80 backdrop-blur-xl"
           />
 
+          {/* MODAL */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
             className="relative w-full max-w-175 bg-white rounded-[2.5rem] shadow-2xl overflow-hidden"
           >
-            {/* COMPACT TOP BAR */}
+            {/* TOP BAR */}
             <div className="flex items-center justify-between px-8 py-4 border-b border-zinc-100 bg-zinc-50/50">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 bg-zinc-950 rounded-lg flex items-center justify-center text-white text-xs font-bold">
@@ -71,10 +131,12 @@ export function BookingSummary({ isOpen, onClose, data }: BookingSummaryProps) {
               </button>
             </div>
 
+            {/* CONTENT */}
             <div className="p-8 md:p-10">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-                {/* LEFT: TRIP DETAILS */}
+                {/* LEFT: DETAILS */}
                 <div className="space-y-6">
+                  {/* DATES */}
                   <div className="flex items-center gap-6">
                     <div className="space-y-1">
                       <p className="text-[9px] font-bold text-orange-600 uppercase tracking-widest">
@@ -95,6 +157,7 @@ export function BookingSummary({ isOpen, onClose, data }: BookingSummaryProps) {
                     </div>
                   </div>
 
+                  {/* GUESTS & NIGHTS */}
                   <div className="grid grid-cols-2 gap-4 pt-4 border-t border-zinc-50">
                     <div className="flex items-center gap-2 text-zinc-500">
                       <Users size={14} />
@@ -109,31 +172,67 @@ export function BookingSummary({ isOpen, onClose, data }: BookingSummaryProps) {
                       </span>
                     </div>
                   </div>
+
+                  {/* ROOM TYPE */}
+                  {data.room && (
+                    <div className="pt-4 border-t border-zinc-50">
+                      <p className="text-[9px] font-bold uppercase tracking-widest text-zinc-400 mb-1">
+                        Room Type
+                      </p>
+                      <p className="text-sm font-semibold text-zinc-900">
+                        {data.room.name}
+                        <span className="text-zinc-400 font-medium">
+                          {" "}
+                          · ₹{data.room.price}/night
+                        </span>
+                      </p>
+                    </div>
+                  )}
                 </div>
 
-                {/* RIGHT: PRICING & CTA */}
+                {/* RIGHT: PRICE */}
                 <div className="bg-zinc-950 rounded-[2rem] p-8 text-white relative overflow-hidden">
                   <div className="relative z-10">
                     <p className="text-[9px] font-bold uppercase tracking-[0.3em] text-zinc-500 mb-2">
                       Total Amount
                     </p>
-                    <div className="flex items-baseline gap-1 mb-6">
-                      <span className="text-4xl font-serif">
-                        {activeCurrency.symbol}
-                        {Math.round(totalAmount * 1.12).toLocaleString()}
-                      </span>
-                      <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">
-                        All inclusive
-                      </span>
+                    <div className="mb-6">
+                      {/* TOTAL */}
+                      <div className="flex items-baseline gap-1">
+                        <span className="text-4xl font-serif">
+                          ₹{totalAmount.toLocaleString("en-IN")}
+                        </span>
+                        <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">
+                          All inclusive
+                        </span>
+                      </div>
+
+                      {/* BREAKDOWN */}
+                      <div className="mt-3 space-y-1 text-[10px] text-zinc-400">
+                        <div className="flex justify-between">
+                          <span>
+                            Room charges ({nights} night{nights > 1 ? "s" : ""})
+                          </span>
+                          <span>₹{roomTotal.toLocaleString("en-IN")}</span>
+                        </div>
+
+                        <div className="flex justify-between">
+                          <span>GST (12%)</span>
+                          <span>₹{gstAmount.toLocaleString("en-IN")}</span>
+                        </div>
+                      </div>
                     </div>
 
-                    <button className="w-full py-4 bg-orange-600 text-white rounded-xl font-bold uppercase tracking-widest text-[10px] hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center gap-2">
+                    <button
+                      onClick={handleConfirm}
+                      className="w-full py-4 bg-orange-600 text-white rounded-xl font-bold uppercase tracking-widest text-[10px] hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center gap-2"
+                    >
                       <CreditCard size={14} />
                       Confirm Now
                     </button>
                   </div>
 
-                  {/* Subtle decorative background icon */}
+                  {/* DECOR */}
                   <ShieldCheck className="absolute -bottom-4 -right-4 w-24 h-24 text-white/5 rotate-12" />
                 </div>
               </div>

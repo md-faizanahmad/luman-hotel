@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Sparkles } from "lucide-react";
 import Image from "next/image";
 import { useCurrencyStore } from "@/store/useCurrencyStore";
-import { Venue } from "@/@types/dining";
+import { Venue } from "@/types/dining";
 
 export function MenuModal({
   isOpen,
@@ -92,7 +92,7 @@ export function MenuModal({
                           <div className="text-sm font-serif font-medium text-zinc-900">
                             {activeCurrency.symbol}
                             {Math.round(
-                              Number(item.p) * activeCurrency.rate
+                              Number(item.p) * activeCurrency.rate,
                             ).toLocaleString()}
                           </div>
                         </div>

@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion, LayoutGroup } from "framer-motion";
 import { ArrowRight, Plus, Sunset, Utensils } from "lucide-react";
 import { MenuModal } from "./MenuModal";
-import { Venue } from "@/@types/dining";
+import { Venue } from "@/types/dining";
 
 // Use the same VENUES array from your previous code
 const VENUES: Venue[] = [
