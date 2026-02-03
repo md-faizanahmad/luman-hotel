@@ -68,7 +68,7 @@ export default function HomeOverview() {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1 }}
-            className="relative aspect-[4/5] md:aspect-[3/4] rounded-[3.5rem] overflow-hidden group shadow-2xl"
+            className="relative aspect-4/5 md:aspect-3/4 rounded-[3.5rem] overflow-hidden group shadow-2xl"
           >
             <Image
               src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1500"
@@ -76,7 +76,7 @@ export default function HomeOverview() {
               fill
               className="object-cover transition-transform duration-1000 group-hover:scale-110"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" />
             <div className="absolute bottom-10 left-10 text-white">
               <div className="flex items-center gap-3 mb-2">
                 <Compass className="w-5 h-5 text-orange-500" />

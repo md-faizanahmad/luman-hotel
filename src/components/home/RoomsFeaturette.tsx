@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Maximize2, Wind, Droplets } from "lucide-react";
+import { ArrowRight, Maximize2 } from "lucide-react";
 import { useCurrencyStore } from "@/store/useCurrencyStore";
 
 const SUITES = [
@@ -118,7 +118,7 @@ export function RoomsFeaturette() {
           </div>
 
           {/* RIGHT: CINEMATIC REVEAL */}
-          <div className="lg:col-span-8 h-[500px] md:h-[650px] relative">
+          <div className="lg:col-span-8 h-125 md:h-162.5 relative">
             <AnimatePresence mode="wait">
               <motion.div
                 key={active}
@@ -134,7 +134,7 @@ export function RoomsFeaturette() {
                   fill
                   className="object-cover transition-transform duration-[3s] group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-transparent opacity-80" />
 
                 {/* FLOATING SPECS */}
                 <div className="absolute top-10 right-10 flex flex-col gap-4 items-end">
@@ -164,7 +164,7 @@ export function RoomsFeaturette() {
                     </p>
                   </div>
 
-                  <div className="bg-white p-8 rounded-[2.5rem] shadow-2xl text-zinc-950 flex flex-col items-center min-w-[180px]">
+                  <div className="bg-white p-8 rounded-[2.5rem] shadow-2xl text-zinc-950 flex flex-col items-center min-w-45">
                     <p className="text-[9px] font-bold uppercase tracking-widest text-zinc-400 mb-1">
                       Starting from
                     </p>

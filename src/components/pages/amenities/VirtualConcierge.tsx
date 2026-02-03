@@ -7,80 +7,79 @@ import {
   Utensils,
   Flower2,
   Send,
-  Calendar,
   Sparkles,
   MessageCircle,
   Info,
-  MapPin,
-  Moon,
-  Clock,
 } from "lucide-react";
-
-type ViewState = "options" | "spa" | "dining" | "queries";
+import {
+  QuickAction,
+  SelectionItem,
+  ViewHeader,
+  ViewState,
+} from "@/shared/ConciergeParts";
 
 export function VirtualConcierge() {
   const [isOpen, setIsOpen] = useState(false);
   const [view, setView] = useState<ViewState>("options");
 
   return (
-    <div className="fixed bottom-6 right-6 z-[200] flex flex-col items-end">
+    <div className="fixed bottom-8 right-8 z-200 flex flex-col items-end pointer-events-none">
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 10, originX: 1, originY: 1 }}
+            initial={{
+              opacity: 0,
+              scale: 0.9,
+              y: 20,
+              transformOrigin: "bottom right",
+            }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 10 }}
-            className="mb-4 w-[calc(100vw-48px)] sm:w-[350px] bg-white/95 backdrop-blur-2xl border border-zinc-200 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.15)] overflow-hidden"
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            className="pointer-events-auto mb-4 w-70 sm:w-[320px] bg-white/95 backdrop-blur-2xl border border-zinc-200 rounded-[2rem] shadow-2xl overflow-hidden flex flex-col"
           >
-            {/* COMPACT HEADER */}
-            <div className="p-5 bg-zinc-950 text-white flex items-center justify-between">
+            {/* COMPACT TOP BAR */}
+            <div className="px-5 py-3 bg-zinc-950 text-white flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
-                <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-zinc-400">
-                  Luman Digital Concierge
+                <span className="text-[8px] font-bold uppercase tracking-[0.2em] text-zinc-400">
+                  Luman Assistant
                 </span>
               </div>
             </div>
 
-            {/* DYNAMIC CONTENT AREA */}
-            <div className="p-6 min-h-[400px] flex flex-col">
+            <div className="p-5 overflow-y-auto max-h-100">
               <AnimatePresence mode="wait">
                 {view === "options" && (
                   <motion.div
                     key="options"
-                    {...fadeTransition}
-                    className="space-y-6 flex-1"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
                   >
-                    <h4 className="font-serif text-xl italic text-zinc-900">
-                      How may we assist?
-                    </h4>
-                    <div className="grid grid-cols-2 gap-3">
+                    <p className="text-[11px] text-zinc-500 mb-4 font-light">
+                      Welcome back, how may we assist you?
+                    </p>
+                    <div className="grid grid-cols-2 gap-2">
                       <QuickAction
-                        icon={<Flower2 />}
-                        label="Spa"
+                        icon={<Flower2 size={18} />}
+                        label="Wellness"
                         onClick={() => setView("spa")}
                       />
                       <QuickAction
-                        icon={<Utensils />}
+                        icon={<Utensils size={18} />}
                         label="Dining"
                         onClick={() => setView("dining")}
                       />
                       <QuickAction
-                        icon={<Info />}
-                        label="Queries"
+                        icon={<Info size={18} />}
+                        label="FAQ"
                         onClick={() => setView("queries")}
                       />
                       <QuickAction
-                        icon={<MapPin />}
-                        label="Locate"
+                        icon={<Sparkles size={18} />}
+                        label="Concierge"
                         onClick={() => {}}
                       />
-                    </div>
-                    <div className="p-4 bg-orange-50/50 rounded-2xl border border-orange-100 flex items-center gap-3">
-                      <Moon className="w-4 h-4 text-orange-600" />
-                      <p className="text-[9px] font-bold text-orange-800 uppercase tracking-tight italic">
-                        Turn-down service scheduled for 20:00
-                      </p>
                     </div>
                   </motion.div>
                 )}
@@ -88,92 +87,49 @@ export function VirtualConcierge() {
                 {view === "spa" && (
                   <motion.div
                     key="spa"
-                    {...fadeTransition}
-                    className="space-y-4 flex-1"
+                    initial={{ opacity: 0, x: 10 }}
+                    animate={{ opacity: 1, x: 0 }}
                   >
-                    <BackButton onClick={() => setView("options")} />
-                    <h4 className="font-serif text-2xl italic">Spa Rituals</h4>
+                    <ViewHeader
+                      title="Spa Rituals"
+                      onBack={() => setView("options")}
+                    />
                     <div className="space-y-2">
-                      <SelectionItem
-                        title="Deep Tissue Massage"
-                        time="60 min"
-                      />
-                      <SelectionItem
-                        title="Himalayan Salt Scrub"
-                        time="45 min"
-                      />
-                      <SelectionItem
-                        title="Zen Meditation Session"
-                        time="30 min"
-                      />
+                      <SelectionItem title="Deep Tissue" time="60m" />
+                      <SelectionItem title="Himalayan Salt" time="45m" />
                     </div>
-                    <BookingButton label="Check Spa Availability" />
                   </motion.div>
                 )}
 
                 {view === "dining" && (
                   <motion.div
                     key="dining"
-                    {...fadeTransition}
-                    className="space-y-4 flex-1"
+                    initial={{ opacity: 0, x: 10 }}
+                    animate={{ opacity: 1, x: 0 }}
                   >
-                    <BackButton onClick={() => setView("options")} />
-                    <h4 className="font-serif text-2xl italic">Dining</h4>
+                    <ViewHeader
+                      title="Reserve Table"
+                      onBack={() => setView("options")}
+                    />
                     <div className="space-y-2">
-                      <SelectionItem
-                        title="The Terrace (Al-Fresco)"
-                        time="Dinner"
-                      />
-                      <SelectionItem
-                        title="The Vault (Fine Dining)"
-                        time="7-Course"
-                      />
-                      <SelectionItem title="In-Room Gastronomy" time="24/7" />
-                    </div>
-                    <BookingButton label="Reserve a Table" />
-                  </motion.div>
-                )}
-
-                {view === "queries" && (
-                  <motion.div
-                    key="queries"
-                    {...fadeTransition}
-                    className="space-y-4 flex-1"
-                  >
-                    <BackButton onClick={() => setView("options")} />
-                    <h4 className="font-serif text-2xl italic">Quick FAQ</h4>
-                    <div className="space-y-3">
-                      <details className="group border-b border-zinc-100 pb-2">
-                        <summary className="list-none text-xs font-bold uppercase tracking-tighter flex justify-between cursor-pointer">
-                          Wi-Fi Access <Plus className="w-3 h-3" />
-                        </summary>
-                        <p className="text-[11px] text-zinc-500 mt-2">
-                          Connect to &apos;Luman_Guest&apos;. Use your room
-                          number and last name.
-                        </p>
-                      </details>
-                      <details className="group border-b border-zinc-100 pb-2">
-                        <summary className="list-none text-xs font-bold uppercase tracking-tighter flex justify-between cursor-pointer">
-                          Gym Hours <Plus className="w-3 h-3" />
-                        </summary>
-                        <p className="text-[11px] text-zinc-500 mt-2">
-                          Our fitness sanctuary is open 24/7 on Level 4.
-                        </p>
-                      </details>
+                      <SelectionItem title="The Terrace" time="Dinner" />
+                      <SelectionItem title="The Vault" time="Supper" />
                     </div>
                   </motion.div>
                 )}
               </AnimatePresence>
+            </div>
 
-              {/* CHAT INPUT FIELD */}
-              <div className="mt-auto pt-6 flex gap-2">
+            {/* MINIMALIST INPUT */}
+            <div className="p-4 pt-0 mt-auto border-t border-zinc-50">
+              <div className="flex gap-2 items-center bg-zinc-100 rounded-xl p-1.5">
                 <input
                   type="text"
-                  placeholder="Need extra towels? Ask here..."
-                  className="flex-1 bg-zinc-100 rounded-2xl px-4 py-3 text-[12px] outline-none focus:ring-1 ring-orange-500 transition-all"
+                  placeholder="Ask a question..."
+                  className="bg-transparent flex-1 text-[11px] px-2 outline-none"
                 />
-                <button className="w-12 h-12 bg-orange-600 text-white rounded-2xl flex items-center justify-center hover:bg-zinc-950 transition-colors">
-                  <Send className="w-4 h-4" />
+                <button className="w-8 h-8 bg-orange-600 rounded-lg flex items-center justify-center text-white hover:bg-zinc-900 transition-colors">
+                  <Send size={14} />
                 </button>
               </div>
             </div>
@@ -185,96 +141,30 @@ export function VirtualConcierge() {
       <motion.button
         whileTap={{ scale: 0.9 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="w-14 h-14 bg-zinc-950 rounded-full shadow-2xl flex items-center justify-center relative border border-white/10"
+        className="pointer-events-auto w-12 h-12 bg-zinc-950 rounded-full flex items-center justify-center border border-white/10 shadow-xl group"
       >
         <AnimatePresence mode="wait">
           {!isOpen ? (
             <motion.div
               key="m"
-              initial={{ opacity: 0, rotate: -45 }}
-              animate={{ opacity: 1, rotate: 0 }}
-              exit={{ opacity: 0, rotate: 45 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
             >
-              <MessageCircle className="w-6 h-6 text-white" />
+              <MessageCircle className="w-5 h-5 text-white" />
             </motion.div>
           ) : (
             <motion.div
               key="x"
-              initial={{ opacity: 0, rotate: -45 }}
-              animate={{ opacity: 1, rotate: 0 }}
-              exit={{ opacity: 0, rotate: 45 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
             >
-              <X className="w-6 h-6 text-white" />
+              <X className="w-5 h-5 text-white" />
             </motion.div>
           )}
         </AnimatePresence>
       </motion.button>
     </div>
   );
-}
-
-// HELPER COMPONENTS
-const fadeTransition = {
-  initial: { opacity: 0, y: 10 },
-  animate: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: -10 },
-  transition: { duration: 0.2 },
-};
-
-function QuickAction({
-  icon,
-  label,
-  onClick,
-}: {
-  icon: any;
-  label: string;
-  onClick: () => void;
-}) {
-  return (
-    <button
-      onClick={onClick}
-      className="flex flex-col items-center justify-center p-4 rounded-[2rem] bg-zinc-50 border border-zinc-100 hover:border-orange-200 hover:bg-white transition-all group h-28"
-    >
-      <div className="mb-2 text-zinc-400 group-hover:text-orange-600 transition-all">
-        {React.cloneElement(icon, { size: 20 })}
-      </div>
-      <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-900">
-        {label}
-      </span>
-    </button>
-  );
-}
-
-function SelectionItem({ title, time }: { title: string; time: string }) {
-  return (
-    <div className="flex justify-between items-center p-4 bg-zinc-50 rounded-2xl hover:bg-orange-50 transition-colors cursor-pointer group">
-      <span className="text-[11px] font-bold text-zinc-900">{title}</span>
-      <span className="text-[9px] font-bold text-zinc-400 group-hover:text-orange-600">
-        {time}
-      </span>
-    </div>
-  );
-}
-
-function BackButton({ onClick }: { onClick: () => void }) {
-  return (
-    <button
-      onClick={onClick}
-      className="text-[9px] font-bold text-zinc-400 uppercase tracking-widest hover:text-zinc-900"
-    >
-      ← Back
-    </button>
-  );
-}
-
-function BookingButton({ label }: { label: string }) {
-  return (
-    <button className="w-full py-4 bg-zinc-950 text-white rounded-2xl text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-orange-600 transition-colors">
-      {label}
-    </button>
-  );
-}
-
-function Plus({ className }: { className?: string }) {
-  return <span className={className}>+</span>;
 }

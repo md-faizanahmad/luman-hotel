@@ -2,7 +2,8 @@
 
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { BookingBar } from "@/components/hotel/BookingBar";
+import { BookingBar } from "@/components/hotel/BookingBar/BookingBar";
+// import { BookingBar } from "@/components/hotel/BookingBar";
 
 interface HeroProps {
   videoSrc: string;
@@ -21,7 +22,7 @@ export default function Hero({
   subtitle,
   showBookingBar = true,
   poster = "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?q=80&w=2070",
-  height = "110vh",
+  height = "109vh",
 }: HeroProps) {
   const containerRef = useRef(null);
 

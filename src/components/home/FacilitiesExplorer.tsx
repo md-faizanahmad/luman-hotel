@@ -170,7 +170,7 @@ export function FacilitiesExplorer() {
         {/* MAIN DISPLAY AREA */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-stretch">
           {/* LEFT: CINEMATIC IMAGE (7 Columns) */}
-          <div className="lg:col-span-7 relative h-[400px] md:h-[600px] rounded-[3rem] overflow-hidden group shadow-2xl">
+          <div className="lg:col-span-7 relative h-100 md:h-150 rounded-[3rem] overflow-hidden group shadow-2xl">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeTab.id}
@@ -186,7 +186,7 @@ export function FacilitiesExplorer() {
                   fill
                   className="object-cover transition-transform duration-[5s] group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" />
                 <div className="absolute bottom-12 left-12">
                   <h3 className="text-white text-5xl font-serif italic">
                     {activeTab.label}

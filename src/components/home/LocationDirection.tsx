@@ -3,14 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import {
-  MapPin,
-  Car,
-  Plane,
-  Train,
-  ArrowUpRight,
-  Navigation,
-} from "lucide-react";
+import { MapPin, Car, Plane, Train, Navigation } from "lucide-react";
 
 const TRAVEL_MODES = [
   {
@@ -77,7 +70,7 @@ export function LocationDirection() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="lg:col-span-8 relative h-[500px] md:h-[700px] rounded-[4rem] overflow-hidden bg-zinc-100 border border-zinc-200 group shadow-2xl"
+            className="lg:col-span-8 relative h-125 md:h-175 rounded-[4rem] overflow-hidden bg-zinc-100 border border-zinc-200 group shadow-2xl"
           >
             {/* Overlay Branding */}
             <div className="absolute top-8 left-8 z-20 pointer-events-none">

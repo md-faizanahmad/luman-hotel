@@ -19,7 +19,7 @@ export default function Home() {
         videoSrc="Hero_Section.mp4"
         titlePrimary="LUMAN"
         titleSecondary="HOTEL"
-        subtitle="Luxury Rediscovered"
+        subtitle="Comfortable Rooms in the Heart of the City"
         showBookingBar={true}
       />
       <ScrollFadeWrapper>
@@ -34,14 +34,8 @@ export default function Home() {
       </ScrollFadeWrapper>
       <LocationDirection />
       <FAQ />
-      <SocialProof />
+      {/* <SocialProof /> */}
       <RoomDetailModal />
-      {/* Extra content to enable scrolling */}
-      <div className="h-screen bg-zinc-50 flex items-center justify-center">
-        <h2 className="text-3xl font-serif text-zinc-400 italic">
-          Discover the Art of Living
-        </h2>
-      </div>
     </main>
   );
 }
