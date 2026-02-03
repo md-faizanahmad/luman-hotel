@@ -42,7 +42,7 @@ export default function Header() {
         className={`relative flex items-center justify-between px-6 py-2.5 transition-all duration-500 will-change-transform ${
           scrolled
             ? "w-full md:w-[90%] lg:w-[70%] bg-black backdrop-blur-2xl border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.1)] rounded-full"
-            : "w-full bg-transparent border-transparent rounded-none"
+            : "w-full bg-black rounded-full border-transparent "
         }`}
       >
         {/* LOGO AREA */}
