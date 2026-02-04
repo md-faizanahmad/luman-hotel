@@ -35,7 +35,7 @@ export default function Header() {
     setIsOpen(false);
   };
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 flex justify-center p-1 md:p-6 transition-all duration-500">
+    <div className="fixed mt-4 md:mt-0 lg:mt-0 top-0 left-0 right-0 z-50 flex justify-center p-1 md:p-6 transition-all duration-500">
       <motion.header
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
