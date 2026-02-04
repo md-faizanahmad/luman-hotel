@@ -86,7 +86,7 @@ export default function VirtualTour() {
   };
 
   return (
-    <div className="w-full flex flex-col gap-4">
+    <div className="w-full lg:flex md:flex hidden flex-col gap-4">
       {/* HEADER SECTION */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-2">
         <div className="flex items-center gap-3">

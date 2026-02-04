@@ -10,7 +10,7 @@ import RoomGrid from "@/components/hotel/RoomGrid";
 import ScrollFadeWrapper from "@/components/motion/ScrollFadeWrapper";
 import { FAQ } from "@/shared/FAQ";
 import Hero from "@/shared/Hero";
-import { SocialProof } from "@/shared/SocialProof";
+// import { SocialProof } from "@/shared/SocialProof";
 
 export default function Home() {
   return (
