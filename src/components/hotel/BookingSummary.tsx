@@ -1,8 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Users, ShieldCheck, Moon, ArrowRight } from "lucide-react";
+import {
+  X,
+  Users,
+  CreditCard,
+  ShieldCheck,
+  Moon,
+  ArrowRight,
+} from "lucide-react";
 import { format, differenceInDays } from "date-fns";
 import { RoomType } from "@/types/rooms";
 import { useRouter } from "next/navigation";
@@ -20,8 +27,6 @@ interface BookingSummaryProps {
 }
 
 export function BookingSummary({ isOpen, onClose, data }: BookingSummaryProps) {
-  const [isConfirming, setIsConfirming] = useState(false);
-
   // Calculate number of nights (minimum 1)
   const nights =
     data.checkIn && data.checkOut
@@ -40,13 +45,13 @@ export function BookingSummary({ isOpen, onClose, data }: BookingSummaryProps) {
   // Final payable amount
   const router = useRouter();
   const totalAmount = roomTotal + gstAmount;
-  const handleConfirm = async () => {
+
+  const handleConfirm = () => {
     if (!data.room || !data.checkIn || !data.checkOut) {
       alert("Missing booking details");
       return;
     }
-    setIsConfirming(true);
-    // ---- BUILD PAYLOAD (THIS WAS MISSING) ----
+
     const payload = {
       checkIn: data.checkIn.toISOString(),
       checkOut: data.checkOut.toISOString(),
@@ -58,30 +63,8 @@ export function BookingSummary({ isOpen, onClose, data }: BookingSummaryProps) {
       totalAmount,
     };
 
-    try {
-      const res = await fetch("/api/booking/confirm", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-
-      const text = await res.text();
-      if (!text) throw new Error("Empty server response");
-
-      const json: { redirectUrl?: string; message?: string } = JSON.parse(text);
-
-      if (!res.ok) {
-        throw new Error(json.message || "Booking failed");
-      }
-
-      if (json.redirectUrl) {
-        router.push(json.redirectUrl);
-      }
-    } catch (err) {
-      console.error("CONFIRM ERROR:", err);
-      alert("Unable to process booking. Please try again.");
-      setIsConfirming(true);
-    }
+    const token = btoa(JSON.stringify(payload));
+    router.push(`/booking/confirm?token=${encodeURIComponent(token)}`);
   };
 
   return (
@@ -216,18 +199,10 @@ export function BookingSummary({ isOpen, onClose, data }: BookingSummaryProps) {
 
                     <button
                       onClick={handleConfirm}
-                      disabled={isConfirming}
-                      className={`
-    w-full py-4 rounded-xl font-bold uppercase tracking-widest text-[10px]
-    flex items-center justify-center gap-2 transition-all
-    ${
-      isConfirming
-        ? "bg-zinc-400 cursor-not-allowed text-white"
-        : "bg-orange-600 hover:bg-white hover:text-black text-white"
-    }
-  `}
+                      className="w-full py-4 bg-orange-600 text-white rounded-xl font-bold uppercase tracking-widest text-[10px] hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center gap-2"
                     >
-                      {isConfirming ? "Confirming..." : "Confirm Now"}
+                      <CreditCard size={14} />
+                      Confirm Now
                     </button>
                   </div>
 
