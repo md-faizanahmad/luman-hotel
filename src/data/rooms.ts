@@ -5,7 +5,7 @@ export const ROOMS: RoomType[] = [
     id: "non-ac",
     name: "Non-AC Room",
     price: 1200,
-    image: "/rooms/Non-AC-Rooms.jpg",
+    image: "/rooms/Non-AC-Room.jpg",
   },
   {
     id: "ac",

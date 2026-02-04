@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import Image from "next/image";
-import { CheckCircle, PhoneCall } from "lucide-react";
 import { BookingPayload } from "@/types/booking";
+import { BookingSuccess } from "./BookingSuccess";
 
 export function BookingConfirm() {
   const [name, setName] = useState("");
@@ -13,7 +13,6 @@ export function BookingConfirm() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const searchParams = useSearchParams();
-  const router = useRouter();
 
   // ---------- Guards ----------
   if (!searchParams) return null;
@@ -95,29 +94,10 @@ Please confirm availability.
   // ---------- Success state ----------
   if (success) {
     return (
-      <section className="pt-20 mt-25 mb-4">
-        <div className="max-w-3xl mx-auto px-6 text-center space-y-6">
-          <CheckCircle className="mx-auto text-green-600 w-16 h-16" />
-          <h1 className="text-3xl font-bold">
-            Booking Request Sent Successfully
-          </h1>
-          <p className="text-zinc-600">
-            Your booking details have been shared with the hotel.
-            <br />
-            The hotel team will contact you shortly.
-          </p>
-
-          <a
-            href={`https://wa.me/917563092029?text=${whatsappMessage}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-8 py-4 bg-green-600 text-white rounded-xl font-bold hover:bg-green-700 transition-all"
-          >
-            <PhoneCall size={18} />
-            Contact Hotel on WhatsApp
-          </a>
-        </div>
-      </section>
+      <BookingSuccess
+        booking={data}
+        whatsappLink={`https://wa.me/917563092029?text=${whatsappMessage}`}
+      />
     );
   }
 
