@@ -1,15 +1,8 @@
 "use client";
 
-import React from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  X,
-  Users,
-  CreditCard,
-  ShieldCheck,
-  Moon,
-  ArrowRight,
-} from "lucide-react";
+import { X, Users, ShieldCheck, Moon, ArrowRight } from "lucide-react";
 import { format, differenceInDays } from "date-fns";
 import { RoomType } from "@/types/rooms";
 import { useRouter } from "next/navigation";
@@ -27,6 +20,8 @@ interface BookingSummaryProps {
 }
 
 export function BookingSummary({ isOpen, onClose, data }: BookingSummaryProps) {
+  const [isConfirming, setIsConfirming] = useState(false);
+
   // Calculate number of nights (minimum 1)
   const nights =
     data.checkIn && data.checkOut
@@ -46,16 +41,11 @@ export function BookingSummary({ isOpen, onClose, data }: BookingSummaryProps) {
   const router = useRouter();
   const totalAmount = roomTotal + gstAmount;
   const handleConfirm = async () => {
-    console.log("ENV DEBUG:", {
-      BOOKING_EMAIL_USER: process.env.BOOKING_EMAIL_USER,
-      BOOKING_EMAIL_PASS_EXISTS: !!process.env.BOOKING_EMAIL_PASS,
-      HOTEL_OWNER_EMAIL: process.env.HOTEL_OWNER_EMAIL,
-    });
     if (!data.room || !data.checkIn || !data.checkOut) {
       alert("Missing booking details");
       return;
     }
-
+    setIsConfirming(true);
     // ---- BUILD PAYLOAD (THIS WAS MISSING) ----
     const payload = {
       checkIn: data.checkIn.toISOString(),
@@ -90,6 +80,7 @@ export function BookingSummary({ isOpen, onClose, data }: BookingSummaryProps) {
     } catch (err) {
       console.error("CONFIRM ERROR:", err);
       alert("Unable to process booking. Please try again.");
+      setIsConfirming(true);
     }
   };
 
@@ -225,10 +216,18 @@ export function BookingSummary({ isOpen, onClose, data }: BookingSummaryProps) {
 
                     <button
                       onClick={handleConfirm}
-                      className="w-full py-4 bg-orange-600 text-white rounded-xl font-bold uppercase tracking-widest text-[10px] hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center gap-2"
+                      disabled={isConfirming}
+                      className={`
+    w-full py-4 rounded-xl font-bold uppercase tracking-widest text-[10px]
+    flex items-center justify-center gap-2 transition-all
+    ${
+      isConfirming
+        ? "bg-zinc-400 cursor-not-allowed text-white"
+        : "bg-orange-600 hover:bg-white hover:text-black text-white"
+    }
+  `}
                     >
-                      <CreditCard size={14} />
-                      Confirm Now
+                      {isConfirming ? "Confirming..." : "Confirm Now"}
                     </button>
                   </div>
 
