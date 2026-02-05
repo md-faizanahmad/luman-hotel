@@ -1,40 +1,30 @@
 <div align="center">
-  <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" />
-  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" />
-  <img src="https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white" />
-  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" />
+  <img src="https://img.shields.io/badge/Status-Production_Ready-success?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/UX-Mobile_First-orange?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Performance-100-white?style=for-the-badge&logo=google-chrome&logoColor=green" />
 </div>
 
 <br />
 
 <div align="center">
   <h1>🏨 LUMAN BOUTIQUE HOTEL</h1>
-  <p>A high-end, next-generation booking experience built for luxury hospitality.</p>
+  <p><strong>The Future of Digital Hospitality: A Cinematic Booking Experience.</strong></p>
+  <p>Luman is a high-performance booking engine and lifestyle interface engineered to bridge the gap between editorial luxury and friction-less e-commerce.</p>
 </div>
 
 <hr />
 
-## 📖 Overview
-**Luman** is a premium boutique hotel web application designed with a "Mobile-First" and "Editorial" aesthetic. It prioritizes fluid micro-interactions, cinematic visual storytelling, and a friction-less booking engine. 
+## 💎 The Digital Experience
+Luman is built on the philosophy of **"Invisible Sophistication."** The UI is designed to feel tactile and responsive, mimicking the 5-star service of a physical luxury property.
 
-### Key Features
-- 💎 **Boutique UI/UX:** High-contrast minimalist design with custom Framer Motion transitions.
-- 📱 **Adaptive Responsiveness:** Custom compact components designed for mobile-first usage.
-- 🛎️ **Virtual Concierge:** A morphing, deep-routed assistant for spa and dining requests.
-- 💱 **Global Currency Engine:** Real-time price conversion across all components.
-
-<hr />
-
-## 📸 Visual Identity
-
-### 🖥️ Desktop Experience
-The desktop version utilizes a wide-screen editorial layout with cinematic parallax effects.
+### 🖥️ Desktop Interface
+A wide-screen editorial layout featuring high-contrast typography and fluid, spring-loaded transitions.
 <p align="center">
-  <img src="https://placehold.co/1200x600/18181b/ffffff?text=Luman+Desktop+Screenshot+Preview" width="100%" alt="Desktop Preview" />
+  <img src="https://placehold.co/1200x600/18181b/ffffff?text=Luman+Desktop+Experience+Preview" width="100%" alt="Desktop Interface" />
 </p>
 
-### 📱 Mobile Experience
-Designed for thumb-friendly interaction, the mobile UI features compact modals and kinetic triggers.
+### 📱 Mobile-First Engineering
+The mobile interface is optimized for the "Thumb Zone." It utilizes compact, non-intrusive modals and kinetic triggers to ensure 100% usability on the move.
 <p align="center">
   <img src="https://placehold.co/400x800/18181b/ffffff?text=Mobile+UI+1" width="32%" />
   <img src="https://placehold.co/400x800/18181b/ffffff?text=Mobile+UI+2" width="32%" />
@@ -43,45 +33,64 @@ Designed for thumb-friendly interaction, the mobile UI features compact modals a
 
 <hr />
 
-## ⚡ Performance & SEO
-Built for speed. Luman scores nearly perfect on Google Lighthouse audits by utilizing Next.js Image optimization and server-side rendering.
+## 🚀 Key Front-End Innovations
 
-<p align="center">
-  <img src="https://placehold.co/800x200/22c55e/ffffff?text=Performance:+100++|++Accessibility:+100++|++Best+Practices:+100++|++SEO:+100" width="100%" alt="Lighthouse Score" />
-</p>
+### 1. The Kinetic Booking Engine
+Instead of static forms, Luman uses a **Predictive Flow** bar.
+- **Smart Auto-Advance:** Selecting a Check-In date automatically triggers the Check-Out calendar.
+- **Compact Voucher Modal:** A wide-format "Boarding Pass" summary that provides a clear financial overview without vertical clutter.
+
+### 2. Morphing Virtual Concierge
+A centralized assistant that replaces deep menus with a floating, deep-routed bubble.
+- **On-Demand Rituals:** Guests can book Spa sessions, Dining tables, or view curated FAQs in a compact 320px window.
+- **Real-Time Pulse:** Features a live-status indicator to simulate human availability and increase guest confidence.
+
+### 3. Global Currency & Localization
+A centralized state engine that localizes pricing across every component—from room cards to the final checkout voucher—instantly.
 
 <hr />
 
-## 📧 Booking Notification System
-When a guest completes a reservation through the **Compact Summary Modal**, the system triggers an automated, professionally formatted email to the Hotel Owner.
+## 📈 Performance & Business Impact
+
+- **SEO Authority:** Optimized semantic structure and meta-tagging for maximum visibility in luxury travel searches.
+- **Conversion Focused:** Reduced "Click-Fatigue" through automated date-range selection and friction-less checkout modals.
+- **Zero Layout Shift:** Highly stable components ensuring a smooth visual experience on all devices.
+
+<hr />
+
+## 📧 Automated Owner Folio
+Upon every successful reservation, the system generates a professionally formatted **Digital Folio** sent directly to the Hotel Owner's inbox.
 
 ### Owner Notification Preview:
-<div style="background-color: #f9f9f9; padding: 20px; border-radius: 15px; border: 1px solid #e5e7eb; color: #18181b; font-family: sans-serif;">
-  <div style="border-bottom: 2px solid #ea580c; padding-bottom: 10px; margin-bottom: 20px;">
-    <h3 style="margin: 0; color: #ea580c;">NEW RESERVATION: #LMN-8842</h3>
+<div style="background-color: #ffffff; padding: 30px; border-radius: 24px; border: 1px solid #f1f1f1; color: #18181b; font-family: 'Times New Roman', serif; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+  <div style="border-bottom: 1px solid #000; padding-bottom: 10px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
+    <h2 style="margin: 0; font-style: italic; font-weight: 300;">Luman Residency</h2>
+    <span style="font-size: 10px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px;">New Reservation</span>
   </div>
-  <table width="100%" style="font-size: 14px; border-collapse: collapse;">
+  <p style="font-size: 14px; margin-bottom: 20px;"><strong>Folio ID:</strong> #LMN-2026-X</p>
+  <table width="100%" style="font-size: 13px; border-collapse: collapse;">
     <tr>
-      <td style="padding: 5px 0;"><strong>Customer Name:</strong></td>
-      <td style="padding: 5px 0;">John Doe</td>
+      <td style="padding: 8px 0; border-bottom: 1px solid #f9f9f9;">Guest:</td>
+      <td style="padding: 8px 0; border-bottom: 1px solid #f9f9f9; text-align: right;"><strong>Sarah Jenkins</strong></td>
     </tr>
     <tr>
-      <td style="padding: 5px 0;"><strong>Stay Period:</strong></td>
-      <td style="padding: 5px 0;">Oct 12 — Oct 15 (3 Nights)</td>
+      <td style="padding: 8px 0; border-bottom: 1px solid #f9f9f9;">Stay:</td>
+      <td style="padding: 8px 0; border-bottom: 1px solid #f9f9f9; text-align: right;">Oct 12 - Oct 18 (6 Nights)</td>
     </tr>
     <tr>
-      <td style="padding: 5px 0;"><strong>Suite Type:</strong></td>
-      <td style="padding: 5px 0;">Cliffside Panorama Suite</td>
+      <td style="padding: 8px 0; border-bottom: 1px solid #f9f9f9;">Residency:</td>
+      <td style="padding: 8px 0; border-bottom: 1px solid #f9f9f9; text-align: right;">Cliffside Panorama Suite</td>
     </tr>
     <tr>
-      <td style="padding: 5px 0;"><strong>Occupancy:</strong></td>
-      <td style="padding: 5px 0;">2 Adults</td>
-    </tr>
-    <tr style="border-top: 1px solid #ddd;">
-      <td style="padding: 10px 0;"><strong>Total Revenue:</strong></td>
-      <td style="padding: 10px 0; color: #16a34a; font-weight: bold;">$1,512.00</td>
+      <td style="padding: 20px 0 0 0; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #999;">Total Revenue:</td>
+      <td style="padding: 20px 0 0 0; text-align: right; font-size: 24px; color: #ea580c;">$3,420.00</td>
     </tr>
   </table>
 </div>
 
 <hr />
+
+<div align="center">
+  <p><strong>The Luman project demonstrates the pinnacle of modern front-end engineering for the luxury sector.</strong></p>
+  <a href="#top">Return to Top</a>
+</div>
