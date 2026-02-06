@@ -20,7 +20,10 @@ Luman is built on the philosophy of **"Invisible Sophistication."** The UI is de
 ### 🖥️ Desktop Interface
 A wide-screen editorial layout featuring high-contrast typography and fluid, spring-loaded transitions.
 <p align="center">
-  <img src="https://placehold.co/1200x600/18181b/ffffff?text=Luman+Desktop+Experience+Preview" width="100%" alt="Desktop Interface" />
+  <img src="https://res.cloudinary.com/daqb5wglu/image/upload/v1768824858/luman-hotel1_v5vv6v.png" width="100%" alt="Desktop Interface" />
+</p>
+<p align="center">
+  <img src="https://res.cloudinary.com/daqb5wglu/image/upload/v1768824842/luman-hotel2_t7ysf0.png" width="100%" alt="Desktop Interface" />
 </p>
 
 ### 📱 Mobile-First Engineering
