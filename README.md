@@ -25,7 +25,12 @@ A wide-screen editorial layout featuring high-contrast typography and fluid, spr
 <p align="center">
   <img src="https://res.cloudinary.com/daqb5wglu/image/upload/v1768824842/luman-hotel2_t7ysf0.png" width="100%" alt="Desktop Interface" />
 </p>
-
+<p align="center">
+  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770391554/Luman_booking_godeqp.png" width="100%" alt="Desktop Interface" />
+</p>
+<p align="center">
+  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770391554/booking-page_y7l3lo.png" width="100%" alt="Desktop Interface" />
+</p>
 ### 📱 Mobile-First Engineering
 The mobile interface is optimized for the "Thumb Zone." It utilizes compact, non-intrusive modals and kinetic triggers to ensure 100% usability on the move.
 <p align="center">
