@@ -218,7 +218,7 @@ Please confirm availability.
               className="border rounded-xl px-4 py-3 text-sm md:col-span-2"
             />
           </div>
-          <section className="bg-zinc-50 border rounded-2xl p-6 space-y-3">
+          <section className="mt-4 border rounded-2xl p-6 space-y-3">
             <p className="text-sm font-medium text-zinc-700">
               📍 Share your current location (optional)
             </p>

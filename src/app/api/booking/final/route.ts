@@ -75,18 +75,24 @@ export async function POST(req: NextRequest) {
         { status: 500 },
       );
     }
-    let locationText = "";
+    let locationText: string | null = null;
 
     if (location?.lat && location?.lng) {
-      const place = await reverseGeocode(location.lat, location.lng);
+      try {
+        const place = await reverseGeocode(location.lat, location.lng);
 
-      locationText = [place.city, place.state, place.country]
-        .filter(Boolean)
-        .join(", ");
+        locationText =
+          [place.city, place.state, place.country].filter(Boolean).join(", ") ||
+          null;
+      } catch (err) {
+        console.warn("Reverse geocoding failed", err);
+      }
     }
-    const googleMapsLink = location
-      ? `https://www.google.com/maps?q=${location.lat},${location.lng}`
-      : null;
+
+    const googleMapsLink =
+      location?.lat && location?.lng
+        ? `https://www.google.com/maps?q=${location.lat},${location.lng}`
+        : null;
 
     // ---------- MAIL TRANSPORT ----------
     const transporter = nodemailer.createTransport({
@@ -123,21 +129,34 @@ ${
   location
     ? `
   <hr />
-  <h3>Customer Location (Approx.)</h3>
-  <p>
-    ${locationText || "Location shared by customer"}
-  </p>
-  <p>
-    <a href="${googleMapsLink}" target="_blank">
-      📍 View on Google Maps
-    </a>
-  </p>
+  <h3>Customer Location</h3>
+
+  ${
+    locationText
+      ? `<p>${locationText}</p>`
+      : `<p>Latitude: ${location.lat}, Longitude: ${location.lng}</p>`
+  }
+
+  ${
+    googleMapsLink
+      ? `<p><a href="${googleMapsLink}" target="_blank">
+          📍 View on Google Maps
+        </a></p>`
+      : ""
+  }
+
   <p style="font-size:12px;color:#666">
-    Location shared voluntarily by customer for reference or pickup.
+    Location shared voluntarily by the customer for reference.
   </p>
 `
-    : ""
+    : `
+  <hr />
+  <p style="font-size:12px;color:#666">
+    Customer did not share location.
+  </p>
+`
 }
+
  <hr />
         <h3>Price Breakdown</h3>
         <p>Room Charges: ₹${booking.roomTotal}</p>
