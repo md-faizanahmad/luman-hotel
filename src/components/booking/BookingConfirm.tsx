@@ -6,6 +6,29 @@ import Image from "next/image";
 import { BookingPayload } from "@/types/booking";
 import { BookingSuccess } from "./BookingSuccess";
 
+// Small Lucide-like icons for a premium feel
+const PinIcon = () => (
+  <svg
+    className="w-4 h-4"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+    />
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+    />
+  </svg>
+);
+
 export function BookingConfirm() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -14,24 +37,20 @@ export function BookingConfirm() {
   const [success, setSuccess] = useState(false);
   const searchParams = useSearchParams();
 
-  const [location, setLocation] = useState<{
-    lat: number;
-    lng: number;
-  } | null>(null);
-
+  const [location, setLocation] = useState<{ lat: number; lng: number } | null>(
+    null,
+  );
   const [locError, setLocError] = useState<string | null>(null);
 
-  // ---------- Guards ----------
   if (!searchParams) return null;
 
   const token = searchParams.get("token");
   if (!token) {
     return (
-      <div className="max-w-xl mx-auto p-8 text-center">
-        <h1 className="text-xl font-bold mb-2">Invalid Booking Link</h1>
-        <p className="text-sm text-zinc-500">
-          Booking details are missing or expired.
-        </p>
+      <div className="flex flex-col items-center justify-center min-h-[60vh] p-6 text-center">
+        <div className="bg-red-50 p-4 rounded-full mb-4">⚠️</div>
+        <h1 className="text-lg font-semibold">Invalid Link</h1>
+        <p className="text-sm text-zinc-500">Booking details have expired.</p>
       </div>
     );
   }
@@ -41,24 +60,19 @@ export function BookingConfirm() {
     data = JSON.parse(atob(token));
   } catch {
     return (
-      <div className="max-w-xl mx-auto p-8 text-center">
-        <h1 className="text-xl font-bold mb-2">Invalid Booking Data</h1>
+      <div className="flex flex-col items-center justify-center min-h-[60vh] p-6 text-center">
+        <h1 className="text-lg font-semibold text-red-600">Data Error</h1>
         <p className="text-sm text-zinc-500">Unable to read booking details.</p>
       </div>
     );
   }
 
-  // ---------- Customer form state ----------
-
-  // ---------- Submit ----------
   const handleFinalConfirm = async () => {
     if (!name.trim() || !phone.trim()) {
       alert("Please enter your name and phone number");
       return;
     }
-
     setLoading(true);
-
     try {
       const res = await fetch("/api/booking/final", {
         method: "POST",
@@ -66,12 +80,10 @@ export function BookingConfirm() {
         body: JSON.stringify({
           booking: data,
           customer: { name, phone, email },
-          location, // 👈 ADD THIS
+          location,
         }),
       });
-
       if (!res.ok) throw new Error("Failed");
-
       setSuccess(true);
     } catch (err) {
       console.error(err);
@@ -82,48 +94,23 @@ export function BookingConfirm() {
 
   const getCurrentLocation = () => {
     if (!navigator.geolocation) {
-      setLocError("Geolocation not supported by your browser");
+      setLocError("Unsupported browser");
       return;
     }
-
     navigator.geolocation.getCurrentPosition(
       (pos) => {
-        setLocation({
-          lat: pos.coords.latitude,
-          lng: pos.coords.longitude,
-        });
+        setLocation({ lat: pos.coords.latitude, lng: pos.coords.longitude });
         setLocError(null);
       },
-      () => {
-        setLocError("Unable to access location. Permission denied.");
-      },
-      {
-        enableHighAccuracy: false,
-        timeout: 10000,
-      },
+      () => setLocError("Location access denied"),
+      { timeout: 10000 },
     );
   };
 
-  // ---------- WhatsApp ----------
-  const whatsappMessage = encodeURIComponent(`
-Hello,
+  const whatsappMessage = encodeURIComponent(
+    `Hello, I've submitted a booking request.\nName: ${name}\nRoom: ${data.room.name}\nTotal: ₹${data.totalAmount}`,
+  );
 
-I have submitted a booking request.
-
-Name: ${name || "—"}
-Phone: ${phone || "—"}
-
-Room: ${data.room.name}
-Guests: ${data.guests}
-Check-in: ${data.checkIn}
-Check-out: ${data.checkOut}
-
-Total Amount: ₹${data.totalAmount}
-
-Please confirm availability.
-`);
-
-  // ---------- Success state ----------
   if (success) {
     return (
       <BookingSuccess
@@ -133,128 +120,146 @@ Please confirm availability.
     );
   }
 
-  // ---------- Main UI ----------
   return (
-    <section className="pt-20">
-      <div className="max-w-5xl mx-auto px-6 py-14 space-y-10">
-        {/* HERO */}
-        <section className="text-center space-y-3">
-          <h1 className="text-3xl font-bold tracking-tight">
-            Complete Your Booking
-          </h1>
-          <p className="text-zinc-600 max-w-2xl mx-auto">
-            Please confirm your contact details. The hotel will contact you to
-            confirm availability.
-          </p>
-        </section>
+    <section className="bg-zinc-50 min-h-screen pb-20 md:pt-10 mt-25">
+      <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-6 p-4">
+        {/* LEFT COLUMN: FORM */}
+        <div className="md:col-span-7 space-y-4">
+          <div className="bg-white rounded-2xl p-6 shadow-sm border border-zinc-100">
+            <h1 className="text-xl font-bold text-zinc-900 mb-1">
+              Confirm Details
+            </h1>
+            <p className="text-sm text-zinc-500 mb-6">
+              The hotel will call you shortly to finalize.
+            </p>
 
-        {/* BOOKING DETAILS */}
-        <section className="bg-white border rounded-2xl p-6 shadow-sm">
-          <h2 className="text-lg font-bold mb-4">Booking Summary</h2>
+            <div className="space-y-4">
+              <div>
+                <label className="text-[11px] font-bold uppercase tracking-wider text-zinc-400 ml-1">
+                  Full Name
+                </label>
+                <input
+                  type="text"
+                  placeholder="John Doe"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="w-full mt-1 bg-zinc-50 border-none focus:ring-2 focus:ring-orange-500 rounded-xl px-4 py-3 text-sm transition-all"
+                />
+              </div>
 
-          <div className="flex flex-col md:flex-row gap-6">
-            <Image
-              src={data.room.image}
-              alt={data.room.name}
-              width={220}
-              height={150}
-              className="rounded-xl object-cover"
-            />
-
-            <div className="flex-1 space-y-3">
-              <h3 className="text-xl font-semibold">{data.room.name}</h3>
-              <p className="text-sm text-zinc-500">
-                {data.guests} Guests · {data.nights} Night
-                {data.nights > 1 ? "s" : ""}
-              </p>
-
-              <div className="pt-3 text-sm space-y-1">
-                <div className="flex justify-between">
-                  <span>Room Charges</span>
-                  <span>₹{data.roomTotal}</span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-[11px] font-bold uppercase tracking-wider text-zinc-400 ml-1">
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    placeholder="+91 00000 00000"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    className="w-full mt-1 bg-zinc-50 border-none focus:ring-2 focus:ring-orange-500 rounded-xl px-4 py-3 text-sm transition-all"
+                  />
                 </div>
-                <div className="flex justify-between">
-                  <span>GST (12%)</span>
-                  <span>₹{data.gstAmount}</span>
+                <div>
+                  <label className="text-[11px] font-bold uppercase tracking-wider text-zinc-400 ml-1">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    placeholder="john@example.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full mt-1 bg-zinc-50 border-none focus:ring-2 focus:ring-orange-500 rounded-xl px-4 py-3 text-sm transition-all"
+                  />
                 </div>
-                <div className="flex justify-between font-bold pt-2 border-t">
-                  <span>Total Amount</span>
-                  <span>₹{data.totalAmount}</span>
-                </div>
+              </div>
+
+              {/* LOCATION COMPONENT */}
+              <div className="pt-2">
+                <button
+                  type="button"
+                  onClick={getCurrentLocation}
+                  className="flex items-center gap-2 text-xs font-semibold text-orange-600 hover:text-orange-700 bg-orange-50 px-3 py-2 rounded-lg transition"
+                >
+                  <PinIcon />
+                  {location
+                    ? "Location Shared"
+                    : "Share current location for easier arrival"}
+                </button>
+                {locError && (
+                  <p className="text-[10px] mt-1 text-red-500">{locError}</p>
+                )}
               </div>
             </div>
           </div>
-        </section>
+        </div>
 
-        {/* CUSTOMER FORM */}
-        <section className="bg-white border rounded-2xl p-6 shadow-sm">
-          <h2 className="text-lg font-bold mb-4">Your Contact Details</h2>
+        {/* RIGHT COLUMN: STICKY SUMMARY */}
+        <div className="md:col-span-5">
+          <div className="bg-white rounded-2xl shadow-sm border border-zinc-100 overflow-hidden sticky top-6">
+            <div className="relative h-32 w-full">
+              <Image
+                src={data.room.image}
+                alt={data.room.name}
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
+              <div className="absolute bottom-3 left-4 text-white">
+                <p className="text-[10px] uppercase font-bold tracking-widest opacity-80">
+                  Your Stay
+                </p>
+                <h3 className="text-lg font-bold leading-tight">
+                  {data.room.name}
+                </h3>
+              </div>
+            </div>
 
-          <div className="grid gap-4 md:grid-cols-2">
-            <input
-              type="text"
-              placeholder="Full Name"
-              required
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="border rounded-xl px-4 py-3 text-sm"
-            />
+            <div className="p-5 space-y-4">
+              <div className="flex justify-between text-xs text-zinc-500 font-medium">
+                <span>{data.guests} Guests</span>
+                <span>
+                  {data.nights} Night{data.nights > 1 ? "s" : ""}
+                </span>
+              </div>
 
-            <input
-              type="tel"
-              placeholder="Phone Number"
-              required
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              className="border rounded-xl px-4 py-3 text-sm"
-            />
+              <div className="space-y-2 border-t border-zinc-50 pt-4">
+                <div className="flex justify-between text-sm">
+                  <span className="text-zinc-500">Room total</span>
+                  <span className="font-medium">₹{data.roomTotal}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-zinc-500">GST (12%)</span>
+                  <span className="font-medium">₹{data.gstAmount}</span>
+                </div>
+                <div className="flex justify-between pt-2">
+                  <span className="font-bold text-zinc-900">Total</span>
+                  <span className="font-bold text-lg text-orange-600">
+                    ₹{data.totalAmount}
+                  </span>
+                </div>
+              </div>
 
-            <input
-              type="email"
-              placeholder="Email (optional)"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="border rounded-xl px-4 py-3 text-sm md:col-span-2"
-            />
-          </div>
-          <section className="mt-4 border rounded-2xl p-6 space-y-3">
-            <p className="text-sm font-medium text-zinc-700">
-              📍 Share your current location (optional)
-            </p>
-
-            <button
-              type="button"
-              onClick={getCurrentLocation}
-              className="px-4 py-2 rounded-lg border text-sm font-semibold hover:bg-zinc-100 transition"
-            >
-              Use my current location
-            </button>
-
-            {location && (
-              <p className="text-xs text-green-600">
-                Location added successfully
+              <button
+                onClick={handleFinalConfirm}
+                disabled={loading}
+                className={`
+                  w-full py-4 rounded-xl font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-2 transition-all
+                  ${loading ? "bg-zinc-100 text-zinc-400" : "bg-orange-600 hover:bg-orange-700 text-white shadow-lg shadow-orange-200"}
+                `}
+              >
+                {loading ? (
+                  <div className="h-4 w-4 border-2 border-zinc-400 border-t-transparent rounded-full animate-spin" />
+                ) : (
+                  "Confirm & Send Request"
+                )}
+              </button>
+              <p className="text-[10px] text-center text-zinc-400">
+                No payment required now
               </p>
-            )}
-
-            {locError && <p className="text-xs text-orange-600">{locError}</p>}
-          </section>
-
-          <button
-            onClick={handleFinalConfirm}
-            disabled={loading}
-            className={`
-              w-full mt-6 py-4 rounded-xl font-bold uppercase tracking-widest text-[10px]
-              ${
-                loading
-                  ? "bg-zinc-400 cursor-not-allowed"
-                  : "bg-orange-600 hover:bg-orange-700 text-white"
-              }
-            `}
-          >
-            {loading ? "Sending Booking..." : "Confirm Booking"}
-          </button>
-        </section>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
