@@ -152,7 +152,7 @@ export function FacilitiesExplorer() {
               <button
                 key={cat.id}
                 onClick={() => setActiveTab(cat)}
-                className={`flex items-center gap-2 px-6 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all whitespace-nowrap
+                className={`flex items-center gap-2 px-6 py-3 rounded-full text-[8px] lg:text-[10px] md:text-[10px] font-bold uppercase tracking-widest transition-all whitespace-nowrap
                   ${
                     activeTab.id === cat.id
                       ? "bg-zinc-950 text-white shadow-lg"

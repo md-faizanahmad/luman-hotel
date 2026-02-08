@@ -1,7 +1,7 @@
 import { FacilitiesExplorer } from "@/components/home/FacilitiesExplorer";
 import HomeOverview from "@/components/home/HomeOverview";
 import { LocationDirection } from "@/components/home/LocationDirection";
-import { RoomsFeaturette } from "@/components/home/RoomsFeaturette";
+// import { RoomsFeaturette } from "@/components/home/RoomsFeaturette";
 import AmenitiesMarquee from "@/components/hotel/AmenitiesMarquee";
 import FeatureShowcase from "@/components/hotel/FeatureShowcase";
 // import { FilterBar } from "@/components/hotel/FilterBar";
@@ -27,7 +27,7 @@ export default function Home() {
       </ScrollFadeWrapper>
       <AmenitiesMarquee />
       <HomeOverview />
-      <RoomsFeaturette />
+      {/* <RoomsFeaturette /> */}
       <FacilitiesExplorer />
       <ScrollFadeWrapper>
         <RoomGrid />
