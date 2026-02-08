@@ -135,35 +135,44 @@ export function FacilitiesExplorer() {
     <section className="py-24 md:py-32 bg-zinc-50 overflow-hidden">
       <div className="container mx-auto px-6">
         {/* HEADER */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-          <div className="max-w-2xl">
-            <span className="text-orange-600 font-bold uppercase tracking-[0.4em] text-[10px]">
+        <div className="flex flex-col lg:flex-row lg:justify-between lg:items-end mb-8 md:mb-16 gap-6">
+          {/* HEADER CONTENT */}
+          <div className="max-w-2xl px-1">
+            <span className="text-orange-600 font-bold uppercase tracking-[0.2em] text-[9px] block mb-1">
               Services & Amenities
             </span>
-            <h2 className="text-5xl md:text-7xl font-serif text-zinc-900 mt-4 tracking-tighter">
+            <h2 className="text-3xl sm:text-4xl md:text-7xl font-serif text-zinc-900 leading-tight tracking-tighter">
               A <span className="italic text-zinc-400 font-light">Legacy</span>{" "}
               of Comfort
             </h2>
           </div>
 
-          {/* TAB SWITCHER */}
-          <div className="flex bg-white p-1 rounded-full border border-zinc-200 shadow-sm overflow-x-auto hide-scrollbar">
-            {CATEGORIES.map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setActiveTab(cat)}
-                className={`flex items-center gap-2 px-6 py-3 rounded-full text-[8px] lg:text-[10px] md:text-[10px] font-bold uppercase tracking-widest transition-all whitespace-nowrap
-                  ${
-                    activeTab.id === cat.id
-                      ? "bg-zinc-950 text-white shadow-lg"
-                      : "text-zinc-400 hover:text-zinc-600"
-                  }
-                `}
-              >
-                {cat.icon}
-                {cat.label}
-              </button>
-            ))}
+          {/* TAB SWITCHER (NO-SCROLL GRID) */}
+          <div className="w-full lg:w-auto">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:flex bg-zinc-100/80 p-1 rounded-2xl md:rounded-full border border-zinc-200/60 gap-1">
+              {CATEGORIES.map((cat) => {
+                const isActive = activeTab.id === cat.id;
+                return (
+                  <button
+                    key={cat.id}
+                    onClick={() => setActiveTab(cat)}
+                    className={`
+              flex items-center justify-center gap-2 px-3 py-2.5 
+              rounded-xl md:rounded-full text-[9px] font-bold uppercase tracking-wider 
+              transition-all duration-200
+              ${
+                isActive
+                  ? "bg-zinc-950 text-white shadow-sm"
+                  : "text-zinc-500 hover:bg-white/50 bg-transparent"
+              }
+            `}
+                  >
+                    <span className="shrink-0 scale-90">{cat.icon}</span>
+                    <span className="truncate">{cat.label}</span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
 
