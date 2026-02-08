@@ -11,17 +11,34 @@ interface FinalBookingRequest {
     phone: string;
     email?: string;
   };
-}
-interface FinalBookingRequest {
-  booking: BookingPayload;
-  customer: {
-    name: string;
-    phone: string;
-    email?: string;
-  };
   location?: {
     lat: number;
     lng: number;
+  };
+}
+async function reverseGeocode(
+  lat: number,
+  lng: number,
+): Promise<{ city?: string; state?: string; country?: string }> {
+  const res = await fetch(
+    `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`,
+    {
+      headers: {
+        "User-Agent": "HotelBookingApp/1.0 (contact@example.com)",
+      },
+    },
+  );
+
+  if (!res.ok) return {};
+
+  const data = await res.json();
+
+  const address = data.address || {};
+
+  return {
+    city: address.city || address.town || address.village || address.county,
+    state: address.state,
+    country: address.country,
   };
 }
 
@@ -58,6 +75,18 @@ export async function POST(req: NextRequest) {
         { status: 500 },
       );
     }
+    let locationText = "";
+
+    if (location?.lat && location?.lng) {
+      const place = await reverseGeocode(location.lat, location.lng);
+
+      locationText = [place.city, place.state, place.country]
+        .filter(Boolean)
+        .join(", ");
+    }
+    const googleMapsLink = location
+      ? `https://www.google.com/maps?q=${location.lat},${location.lng}`
+      : null;
 
     // ---------- MAIL TRANSPORT ----------
     const transporter = nodemailer.createTransport({
@@ -96,11 +125,15 @@ ${
   <hr />
   <h3>Customer Location (Approx.)</h3>
   <p>
-    Latitude: ${location.lat}<br />
-    Longitude: ${location.lng}
+    ${locationText || "Location shared by customer"}
+  </p>
+  <p>
+    <a href="${googleMapsLink}" target="_blank">
+      📍 View on Google Maps
+    </a>
   </p>
   <p style="font-size:12px;color:#666">
-    (Shared by customer for pickup / reference)
+    Location shared voluntarily by customer for reference or pickup.
   </p>
 `
     : ""
