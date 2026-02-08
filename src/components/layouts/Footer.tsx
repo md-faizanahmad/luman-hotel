@@ -125,12 +125,12 @@ export default function Footer() {
           {/* NEWSLETTER - High End Boutique Style */}
           <div className="lg:col-span-4 space-y-8">
             <h4 className="text-[10px] font-bold text-orange-600 uppercase tracking-[0.3em]">
-              The Inner Circle
+              Hotel Location
             </h4>
             <p className="text-sm font-light">
               Join for private invitations and seasonal reveals.
             </p>
-            <div className="relative border-b border-white/10 pb-2 group focus-within:border-orange-600 transition-colors">
+            {/* <div className="relative border-b border-white/10 pb-2 group focus-within:border-orange-600 transition-colors">
               <input
                 type="email"
                 placeholder="Email address"
@@ -139,7 +139,7 @@ export default function Footer() {
               <button className="absolute right-0 top-1/2 -translate-y-1/2 text-orange-600 hover:text-white transition-colors">
                 <ArrowUpRight className="w-6 h-6" />
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -147,15 +147,15 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-12 border-y border-white/5 text-[11px] font-bold uppercase tracking-widest text-zinc-500">
           <div className="flex items-center gap-4 group cursor-pointer hover:text-white transition-colors">
             <MapPin className="w-4 h-4 text-orange-600" />
-            <span>Coastal Road, Mumbai, MH</span>
+            <span>India</span>
           </div>
           <div className="flex items-center gap-4 group cursor-pointer hover:text-white transition-colors justify-start md:justify-center">
             <Phone className="w-4 h-4 text-orange-600" />
-            <span>+91 22 1234 5678</span>
+            <span>+91 7563092029</span>
           </div>
           <div className="flex items-center gap-4 group cursor-pointer hover:text-white transition-colors justify-start md:justify-end">
             <Mail className="w-4 h-4 text-orange-600" />
-            <span>reservations@luman.com</span>
+            <span>md.faizan.ahmad.web@gmail.com</span>
           </div>
         </div>
 
