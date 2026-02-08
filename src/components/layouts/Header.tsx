@@ -6,7 +6,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Menu, ArrowRight, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { CurrencySwitcher } from "./CurrencySwitcher";
+// import { CurrencySwitcher } from "./CurrencySwitcher";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import {
   Sheet,
@@ -92,9 +92,9 @@ export default function Header() {
 
         {/* RIGHT ACTIONS */}
         <div className="flex items-center gap-2">
-          <div className="hidden sm:block">
+          {/* <div className="hidden sm:block">
             <CurrencySwitcher scrolled={scrolled} />
-          </div>
+          </div> */}
 
           <Link href="/restaurants">
             <Button
@@ -105,7 +105,7 @@ export default function Header() {
               }`}
             >
               <span className="text-xs font-bold uppercase tracking-wider">
-                Book Now
+                Restaurants
               </span>
             </Button>
           </Link>
@@ -188,7 +188,7 @@ export default function Header() {
                   <div className="h-px bg-white/10 w-full" />
                   <div className="flex flex-col gap-6">
                     <div className="flex justify-between items-center">
-                      <CurrencySwitcher scrolled={false} />
+                      {/* <CurrencySwitcher scrolled={false} /> */}
                       <div className="flex gap-6 text-[10px] font-bold uppercase tracking-widest text-zinc-500">
                         <a
                           href="#"
