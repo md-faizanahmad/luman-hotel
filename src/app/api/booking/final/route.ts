@@ -3,6 +3,7 @@ export const runtime = "nodejs";
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { BookingPayload } from "@/types/booking";
+import { HOTEL_INFO } from "@/config/hotel";
 
 interface FinalBookingRequest {
   booking: BookingPayload;
@@ -19,12 +20,12 @@ interface FinalBookingRequest {
 async function reverseGeocode(
   lat: number,
   lng: number,
-): Promise<{ city?: string; state?: string; country?: string }> {
+): Promise<{ district?: string; state?: string }> {
   const res = await fetch(
     `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`,
     {
       headers: {
-        "User-Agent": "HotelBookingApp/1.0 (contact@example.com)",
+        "User-Agent": "HotelBookingApp/1.0 (contact@yourdomain.com)",
       },
     },
   );
@@ -32,13 +33,11 @@ async function reverseGeocode(
   if (!res.ok) return {};
 
   const data = await res.json();
-
-  const address = data.address || {};
+  const a = data.address || {};
 
   return {
-    city: address.city || address.town || address.village || address.county,
-    state: address.state,
-    country: address.country,
+    district: a.city || a.town || a.village || a.county,
+    state: a.state,
   };
 }
 
@@ -82,11 +81,8 @@ export async function POST(req: NextRequest) {
         const place = await reverseGeocode(location.lat, location.lng);
 
         locationText =
-          [place.city, place.state, place.country].filter(Boolean).join(", ") ||
-          null;
-      } catch (err) {
-        console.warn("Reverse geocoding failed", err);
-      }
+          [place.district, place.state].filter(Boolean).join(", ") || null;
+      } catch {}
     }
 
     const googleMapsLink =
@@ -131,11 +127,7 @@ ${
   <hr />
   <h3>Customer Location</h3>
 
-  ${
-    locationText
-      ? `<p>${locationText}</p>`
-      : `<p>Latitude: ${location.lat}, Longitude: ${location.lng}</p>`
-  }
+    <p>${locationText}</p>
 
   ${
     googleMapsLink
@@ -171,6 +163,55 @@ ${
       </div>
     `;
 
+    const customerHtml = `
+  <div style="font-family: Arial, sans-serif; line-height:1.6">
+    <h2>Booking Request Received</h2>
+
+    <p>Dear ${customer.name},</p>
+
+    <p>
+      Thank you for choosing <strong>${HOTEL_INFO.name}</strong>.
+      We have successfully received your booking request and shared
+      the details with the hotel.
+    </p>
+
+    <h3>Hotel Contact Details</h3>
+    <p>
+      <b>Hotel:</b> ${HOTEL_INFO.name}<br />
+      <b>Phone:</b> <a href=telto:${HOTEL_INFO.phone}>${HOTEL_INFO.phone}</a><br />
+      <b>Email:</b> ${HOTEL_INFO.email}
+    </p>
+
+    <p style="margin-top:12px">
+      You may also call the hotel directly for quick confirmation
+      or any special requests.
+    </p>
+
+    <hr />
+
+    <h3>Your Booking Summary</h3>
+    <p><b>Room:</b> ${booking.room.name}</p>
+    <p><b>Guests:</b> ${booking.guests}</p>
+    <p><b>Check-in:</b> ${booking.checkIn}</p>
+    <p><b>Check-out:</b> ${booking.checkOut}</p>
+    <p><b>Total Amount:</b> ₹${booking.totalAmount}</p>
+
+    <p style="margin-top:16px">
+      This is a booking request, not a payment confirmation.
+      The hotel team will contact you shortly to confirm availability.
+    </p>
+
+    <p style="font-size:12px;color:#666;margin-top:24px">
+      If you have already spoken to the hotel, you can ignore this email.
+    </p>
+
+    <p>
+      Warm regards,<br />
+      ${HOTEL_INFO.name} Team
+    </p>
+  </div>
+`;
+
     // ---------- SEND MAIL ----------
     await transporter.sendMail({
       from: `"Hotel Booking" <${process.env.BOOKING_EMAIL_USER}>`,
@@ -179,11 +220,14 @@ ${
       html,
     });
 
-    await transporter.sendMail({
-      to: process.env.HOTEL_OWNER_EMAIL,
-      subject: "...",
-      html: "...",
-    });
+    if (customer.email) {
+      await transporter.sendMail({
+        from: `"${HOTEL_INFO.name}" <${process.env.BOOKING_EMAIL_USER}>`,
+        to: customer.email,
+        subject: `Booking Request Received – ${HOTEL_INFO.name}`,
+        html: customerHtml,
+      });
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {
