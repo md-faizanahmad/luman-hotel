@@ -12,12 +12,24 @@ interface FinalBookingRequest {
     email?: string;
   };
 }
+interface FinalBookingRequest {
+  booking: BookingPayload;
+  customer: {
+    name: string;
+    phone: string;
+    email?: string;
+  };
+  location?: {
+    lat: number;
+    lng: number;
+  };
+}
 
 export async function POST(req: NextRequest) {
   try {
     const body = (await req.json()) as FinalBookingRequest;
 
-    const { booking, customer } = body;
+    const { booking, customer, location } = body;
 
     // ---------- HARD VALIDATION ----------
     if (
@@ -78,7 +90,22 @@ export async function POST(req: NextRequest) {
         <p><b>Nights:</b> ${booking.nights}</p>
 
         <hr />
-
+${
+  location
+    ? `
+  <hr />
+  <h3>Customer Location (Approx.)</h3>
+  <p>
+    Latitude: ${location.lat}<br />
+    Longitude: ${location.lng}
+  </p>
+  <p style="font-size:12px;color:#666">
+    (Shared by customer for pickup / reference)
+  </p>
+`
+    : ""
+}
+ <hr />
         <h3>Price Breakdown</h3>
         <p>Room Charges: ₹${booking.roomTotal}</p>
         <p>GST (12%): ₹${booking.gstAmount}</p>
@@ -98,6 +125,12 @@ export async function POST(req: NextRequest) {
       to: process.env.HOTEL_OWNER_EMAIL,
       subject: `New Booking Request - ${booking.room.name}`,
       html,
+    });
+
+    await transporter.sendMail({
+      to: process.env.HOTEL_OWNER_EMAIL,
+      subject: "...",
+      html: "...",
     });
 
     return NextResponse.json({ success: true });

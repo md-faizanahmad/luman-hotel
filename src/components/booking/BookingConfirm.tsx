@@ -14,6 +14,13 @@ export function BookingConfirm() {
   const [success, setSuccess] = useState(false);
   const searchParams = useSearchParams();
 
+  const [location, setLocation] = useState<{
+    lat: number;
+    lng: number;
+  } | null>(null);
+
+  const [locError, setLocError] = useState<string | null>(null);
+
   // ---------- Guards ----------
   if (!searchParams) return null;
 
@@ -59,6 +66,7 @@ export function BookingConfirm() {
         body: JSON.stringify({
           booking: data,
           customer: { name, phone, email },
+          location, // 👈 ADD THIS
         }),
       });
 
@@ -70,6 +78,30 @@ export function BookingConfirm() {
       alert("Unable to send booking. Please try again.");
       setLoading(false);
     }
+  };
+
+  const getCurrentLocation = () => {
+    if (!navigator.geolocation) {
+      setLocError("Geolocation not supported by your browser");
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        setLocation({
+          lat: pos.coords.latitude,
+          lng: pos.coords.longitude,
+        });
+        setLocError(null);
+      },
+      () => {
+        setLocError("Unable to access location. Permission denied.");
+      },
+      {
+        enableHighAccuracy: false,
+        timeout: 10000,
+      },
+    );
   };
 
   // ---------- WhatsApp ----------
@@ -162,6 +194,7 @@ Please confirm availability.
             <input
               type="text"
               placeholder="Full Name"
+              required
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="border rounded-xl px-4 py-3 text-sm"
@@ -170,6 +203,7 @@ Please confirm availability.
             <input
               type="tel"
               placeholder="Phone Number"
+              required
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               className="border rounded-xl px-4 py-3 text-sm"
@@ -178,11 +212,33 @@ Please confirm availability.
             <input
               type="email"
               placeholder="Email (optional)"
+              required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="border rounded-xl px-4 py-3 text-sm md:col-span-2"
             />
           </div>
+          <section className="bg-zinc-50 border rounded-2xl p-6 space-y-3">
+            <p className="text-sm font-medium text-zinc-700">
+              📍 Share your current location (optional)
+            </p>
+
+            <button
+              type="button"
+              onClick={getCurrentLocation}
+              className="px-4 py-2 rounded-lg border text-sm font-semibold hover:bg-zinc-100 transition"
+            >
+              Use my current location
+            </button>
+
+            {location && (
+              <p className="text-xs text-green-600">
+                Location added successfully
+              </p>
+            )}
+
+            {locError && <p className="text-xs text-orange-600">{locError}</p>}
+          </section>
 
           <button
             onClick={handleFinalConfirm}
