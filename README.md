@@ -34,15 +34,26 @@ A wide-screen editorial layout featuring high-contrast typography and fluid, spr
 ### 📱 Mobile-First Engineering
 The mobile interface is optimized for the "Thumb Zone." It utilizes compact, non-intrusive modals and kinetic triggers to ensure 100% usability on the move.
 <p align="center">
-  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629280/Screenshot_20260209-145326_mc4cy1.png" width="32%" />
-  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629277/Screenshot_20260209-145336_yxdlsu.png" width="32%" />
-  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629535/Screenshot_20260209-150159_qjzaz0.png" width="32%" />
+  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629280/Screenshot_20260209-145326_mc4cy1.png" alt="Luman-Hotel-Home" width="32%" />
+  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629277/Screenshot_20260209-145336_yxdlsu.png" alt="" width="32%" />
+  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629535/Screenshot_20260209-150159_qjzaz0.png" alt="" width="32%" />
 </p>
 <p align="center">
-  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629276/Screenshot_20260209-145413_qrpw6p.png" width="32%" />
-  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629274/Screenshot_20260209-145424_dr2yuy.png" width="32%" />
-  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629274/Screenshot_20260209-145511_nnj2gf.png" width="32%" />
+  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629276/Screenshot_20260209-145413_qrpw6p.png" alt="" width="32%" />
+  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629274/Screenshot_20260209-145424_dr2yuy.png" alt="" width="32%" />
+  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629274/Screenshot_20260209-145511_nnj2gf.png" alt="" width="32%" />
 </p>
+
+<p align="center">
+  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629273/Screenshot_20260209-145607_hharsu.png" alt="" width="32%" />
+  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629271/Screenshot_20260209-145627_q0lroi.png" alt="" width="32%" />
+ 
+  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629271/Screenshot_20260209-145650_dqaorf.png" alt="" width="32%" />
+</p>
+<p align="center">
+  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629271/Screenshot_20260209-145659_bjunzz.png" alt="" width="32%" />
+ </p>
+
 <hr />
 
 ## 🚀 Key Front-End Innovations
