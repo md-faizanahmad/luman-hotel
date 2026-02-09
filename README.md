@@ -34,11 +34,15 @@ A wide-screen editorial layout featuring high-contrast typography and fluid, spr
 ### 📱 Mobile-First Engineering
 The mobile interface is optimized for the "Thumb Zone." It utilizes compact, non-intrusive modals and kinetic triggers to ensure 100% usability on the move.
 <p align="center">
-  <img src="https://placehold.co/400x800/18181b/ffffff?text=Mobile+UI+1" width="32%" />
-  <img src="https://placehold.co/400x800/18181b/ffffff?text=Mobile+UI+2" width="32%" />
-  <img src="https://placehold.co/400x800/18181b/ffffff?text=Mobile+UI+3" width="32%" />
+  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629280/Screenshot_20260209-145326_mc4cy1.png" width="32%" />
+  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629277/Screenshot_20260209-145336_yxdlsu.png" width="32%" />
+  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629276/Screenshot_20260209-145356_dq5bq4.png" width="32%" />
 </p>
-
+<p align="center">
+  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629276/Screenshot_20260209-145413_qrpw6p.png" width="32%" />
+  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629274/Screenshot_20260209-145424_dr2yuy.png" width="32%" />
+  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629274/Screenshot_20260209-145511_nnj2gf.png" width="32%" />
+</p>
 <hr />
 
 ## 🚀 Key Front-End Innovations
