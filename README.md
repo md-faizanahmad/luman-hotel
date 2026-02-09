@@ -36,7 +36,7 @@ The mobile interface is optimized for the "Thumb Zone." It utilizes compact, non
 <p align="center">
   <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629280/Screenshot_20260209-145326_mc4cy1.png" width="32%" />
   <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629277/Screenshot_20260209-145336_yxdlsu.png" width="32%" />
-  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629276/Screenshot_20260209-145356_dq5bq4.png" width="32%" />
+  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629535/Screenshot_20260209-150159_qjzaz0.png" width="32%" />
 </p>
 <p align="center">
   <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629276/Screenshot_20260209-145413_qrpw6p.png" width="32%" />
