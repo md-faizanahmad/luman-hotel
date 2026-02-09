@@ -48,7 +48,7 @@ The mobile interface is optimized for the "Thumb Zone." It utilizes compact, non
   <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629271/Screenshot_20260209-145627_q0lroi.png" alt="Luman-Hotel-BookingDetailsCustomerRecivedEmail" width="32%" />
   <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629271/Screenshot_20260209-145650_dqaorf.png" alt="Luman-Hotel-BookingDetailsOwnerRecivedEmail" width="32%" />
 </p>
-
+<img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629271/Screenshot_20260209-145659_bjunzz.png" alt="Luman-Hotel-BookingDetailsWithLocationOwnerRecivedEmail" width="32%" />
 
 <hr />
 
