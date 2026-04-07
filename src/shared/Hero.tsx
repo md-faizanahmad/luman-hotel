@@ -90,7 +90,7 @@ export default function Hero({
 
       {/* OPTIONAL BOOKING BAR */}
       {showBookingBar && (
-        <div className="absolute bottom-0 left-0 w-full z-20">
+        <div className="absolute bottom-20 left-0 w-full z-20">
           <BookingBar />
         </div>
       )}
