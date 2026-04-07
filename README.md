@@ -1,104 +1,173 @@
 <div align="center">
   <img src="https://img.shields.io/badge/Status-Production_Ready-success?style=for-the-badge" />
   <img src="https://img.shields.io/badge/UX-Mobile_First-orange?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Performance-100-white?style=for-the-badge&logo=google-chrome&logoColor=green" />
+  <img src="https://img.shields.io/badge/Performance-Lighthouse_100-green?style=for-the-badge&logo=google-chrome" />
 </div>
 
 <br />
 
 <div align="center">
   <h1>🏨 LUMAN BOUTIQUE HOTEL</h1>
-  <p><strong>The Future of Digital Hospitality: A Cinematic Booking Experience.</strong></p>
-  <p>Luman is a high-performance booking engine and lifestyle interface engineered to bridge the gap between editorial luxury and friction-less e-commerce.</p>
+  <p><strong>High-Performance, Mobile-First Hotel Booking System</strong></p>
+  <p>
+    A production-ready hotel booking web application focused on performance,
+    conversion optimization, and automated reservation workflows.
+  </p>
 </div>
 
 <hr />
 
-## 💎 The Digital Experience
-Luman is built on the philosophy of **"Invisible Sophistication."** The UI is designed to feel tactile and responsive, mimicking the 5-star service of a physical luxury property.
+<h2>🎯 Project Overview</h2>
+<p>
+  <strong>Luman Boutique Hotel</strong> is a modern hotel booking platform designed
+  to simulate a premium hospitality experience through clean UX, predictive booking
+  logic, and real-world automation.
+</p>
 
-### 🖥️ Desktop Interface
-A wide-screen editorial layout featuring high-contrast typography and fluid, spring-loaded transitions.
-<p align="center">
-  <img src="https://res.cloudinary.com/daqb5wglu/image/upload/v1768824858/luman-hotel1_v5vv6v.png" width="100%" alt="Desktop Interface" />
-</p>
-<p align="center">
-  <img src="https://res.cloudinary.com/daqb5wglu/image/upload/v1768824842/luman-hotel2_t7ysf0.png" width="100%" alt="Desktop Interface" />
-</p>
-<p align="center">
-  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770391554/Luman_booking_godeqp.png" width="100%" alt="Desktop Interface" />
-</p>
-<p align="center">
-  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770391554/booking-page_y7l3lo.png" width="100%" alt="Desktop Interface" />
-</p>
-### 📱 Mobile-First Engineering
-The mobile interface is optimized for the "Thumb Zone." It utilizes compact, non-intrusive modals and kinetic triggers to ensure 100% usability on the move.
-<p align="center">
-  <img src="https://placehold.co/400x800/18181b/ffffff?text=Mobile+UI+1" width="32%" />
-  <img src="https://placehold.co/400x800/18181b/ffffff?text=Mobile+UI+2" width="32%" />
-  <img src="https://placehold.co/400x800/18181b/ffffff?text=Mobile+UI+3" width="32%" />
+<p>
+  This project demonstrates how a frontend engineer can design and implement a
+  <strong>complete booking flow</strong> — from date selection to automated owner
+  notifications — while maintaining performance, SEO, and mobile usability.
 </p>
 
 <hr />
 
-## 🚀 Key Front-End Innovations
+<h2>🖥️ Desktop Experience – Editorial Booking Interface</h2>
 
-### 1. The Kinetic Booking Engine
-Instead of static forms, Luman uses a **Predictive Flow** bar.
-- **Smart Auto-Advance:** Selecting a Check-In date automatically triggers the Check-Out calendar.
-- **Compact Voucher Modal:** A wide-format "Boarding Pass" summary that provides a clear financial overview without vertical clutter.
+<p align="center">
+  <img src="https://res.cloudinary.com/daqb5wglu/image/upload/v1768824858/luman-hotel1_v5vv6v.png"
+       width="100%"
+       alt="Desktop hotel homepage showcasing editorial layout, hero section, and premium visual hierarchy" />
+</p>
 
-### 2. Morphing Virtual Concierge
-A centralized assistant that replaces deep menus with a floating, deep-routed bubble.
-- **On-Demand Rituals:** Guests can book Spa sessions, Dining tables, or view curated FAQs in a compact 320px window.
-- **Real-Time Pulse:** Features a live-status indicator to simulate human availability and increase guest confidence.
+<p align="center">
+  <img src="https://res.cloudinary.com/daqb5wglu/image/upload/v1768824842/luman-hotel2_t7ysf0.png"
+       width="100%"
+       alt="Desktop hotel website displaying room highlights, amenities, and storytelling-driven layout" />
+</p>
 
-### 3. Global Currency & Localization
-A centralized state engine that localizes pricing across every component—from room cards to the final checkout voucher—instantly.
+<p align="center">
+  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770391554/Luman_booking_godeqp.png"
+       width="100%"
+       alt="Desktop booking flow with interactive date picker, room pricing, and validation logic" />
+</p>
+
+<p align="center">
+  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770391554/booking-page_y7l3lo.png"
+       width="100%"
+       alt="Desktop booking summary page showing stay duration, room type, taxes, and total price" />
+</p>
 
 <hr />
 
-## 📈 Performance & Business Impact
+<h2>📱 Mobile-First Booking Flow (Thumb-Optimized UX)</h2>
 
-- **SEO Authority:** Optimized semantic structure and meta-tagging for maximum visibility in luxury travel searches.
-- **Conversion Focused:** Reduced "Click-Fatigue" through automated date-range selection and friction-less checkout modals.
-- **Zero Layout Shift:** Highly stable components ensuring a smooth visual experience on all devices.
+<p align="center">
+  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629280/Screenshot_20260209-145326_mc4cy1.png"
+       width="32%"
+       alt="Mobile hotel homepage optimized for fast loading and one-hand navigation" />
+
+  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629277/Screenshot_20260209-145336_yxdlsu.png"
+       width="32%"
+       alt="Mobile navigation menu for hotel website with quick access to booking sections" />
+
+  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629535/Screenshot_20260209-150159_qjzaz0.png"
+       width="32%"
+       alt="Mobile footer containing contact information and call-to-action booking buttons" />
+</p>
+
+<p align="center">
+  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629276/Screenshot_20260209-145413_qrpw6p.png"
+       width="32%"
+       alt="Mobile booking bar allowing users to select check-in and check-out dates easily" />
+
+  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629274/Screenshot_20260209-145424_dr2yuy.png"
+       width="32%"
+       alt="Mobile booking summary modal displaying nights count, room price, and tax breakdown" />
+
+  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629274/Screenshot_20260209-145511_nnj2gf.png"
+       width="32%"
+       alt="Final mobile booking confirmation screen before reservation submission" />
+</p>
+
+<p align="center">
+  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629273/Screenshot_20260209-145607_hharsu.png"
+       width="32%"
+       alt="Booking success screen displayed after successful hotel reservation" />
+
+  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629271/Screenshot_20260209-145627_q0lroi.png"
+       width="32%"
+       alt="Customer confirmation email containing booking details, stay dates, and pricing summary" />
+
+  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629271/Screenshot_20260209-145650_dqaorf.png"
+       width="32%"
+       alt="Hotel owner email notification with customer booking details and stay information" />
+</p>
+
+<p align="center">
+  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1770629271/Screenshot_20260209-145659_bjunzz.png"
+       width="32%"
+       alt="Hotel owner email including customer booking details along with guest location data" />
+</p>
 
 <hr />
 
-## 📧 Automated Owner Folio
-Upon every successful reservation, the system generates a professionally formatted **Digital Folio** sent directly to the Hotel Owner's inbox.
+<h2>🚀 Core Frontend & UX Innovations</h2>
 
-### Owner Notification Preview:
-<div style="background-color: #ffffff; padding: 30px; border-radius: 24px; border: 1px solid #f1f1f1; color: #18181b; font-family: 'Times New Roman', serif; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
-  <div style="border-bottom: 1px solid #000; padding-bottom: 10px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
-    <h2 style="margin: 0; font-style: italic; font-weight: 300;">Luman Residency</h2>
-    <span style="font-size: 10px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px;">New Reservation</span>
-  </div>
-  <p style="font-size: 14px; margin-bottom: 20px;"><strong>Folio ID:</strong> #LMN-2026-X</p>
-  <table width="100%" style="font-size: 13px; border-collapse: collapse;">
-    <tr>
-      <td style="padding: 8px 0; border-bottom: 1px solid #f9f9f9;">Guest:</td>
-      <td style="padding: 8px 0; border-bottom: 1px solid #f9f9f9; text-align: right;"><strong>Sarah Jenkins</strong></td>
-    </tr>
-    <tr>
-      <td style="padding: 8px 0; border-bottom: 1px solid #f9f9f9;">Stay:</td>
-      <td style="padding: 8px 0; border-bottom: 1px solid #f9f9f9; text-align: right;">Oct 12 - Oct 18 (6 Nights)</td>
-    </tr>
-    <tr>
-      <td style="padding: 8px 0; border-bottom: 1px solid #f9f9f9;">Residency:</td>
-      <td style="padding: 8px 0; border-bottom: 1px solid #f9f9f9; text-align: right;">Cliffside Panorama Suite</td>
-    </tr>
-    <tr>
-      <td style="padding: 20px 0 0 0; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #999;">Total Revenue:</td>
-      <td style="padding: 20px 0 0 0; text-align: right; font-size: 24px; color: #ea580c;">$3,420.00</td>
-    </tr>
-  </table>
-</div>
+<h3>1️⃣ Predictive Booking Engine</h3>
+<ul>
+  <li>Auto-advancing date selection to reduce user friction</li>
+  <li>Prevents invalid check-in / check-out combinations</li>
+  <li>Compact booking summary instead of long multi-step forms</li>
+</ul>
+
+<h3>2️⃣ Mobile-First Interaction Design</h3>
+<ul>
+  <li>Designed for thumb-reach zones</li>
+  <li>Minimal modal usage to reduce cognitive load</li>
+  <li>Optimized for low-end Android devices</li>
+</ul>
+
+<h3>3️⃣ Automated Email Workflow</h3>
+<ul>
+  <li>Instant booking confirmation email to customer</li>
+  <li>Hotel owner receives full booking details automatically</li>
+  <li>Includes stay dates, guest info, pricing, and location</li>
+</ul>
+
+<hr />
+
+<h2>📈 Performance, SEO & Business Impact</h2>
+
+<ul>
+  <li><strong>Lighthouse Score:</strong> 100 (Mobile & Desktop)</li>
+  <li><strong>Zero Layout Shift (CLS = 0)</strong></li>
+  <li>SEO-friendly semantic HTML structure</li>
+  <li>Optimized for keywords such as:</li>
+</ul>
+
+<ul>
+  <li>hotel booking website</li>
+  <li>luxury hotel booking system</li>
+  <li>Next.js hotel website</li>
+  <li>mobile-first booking flow</li>
+  <li>automated hotel booking emails</li>
+</ul>
+
+<hr />
+
+<h2>🧠 What This Project Demonstrates</h2>
+
+<ul>
+  <li>Ability to design real-world booking flows</li>
+  <li>Strong understanding of frontend performance optimization</li>
+  <li>Business-focused UX and conversion thinking</li>
+  <li>Production-ready frontend engineering practices</li>
+</ul>
 
 <hr />
 
 <div align="center">
-  <p><strong>The Luman project demonstrates the pinnacle of modern front-end engineering for the luxury sector.</strong></p>
-  <a href="#top">Return to Top</a>
+  <p><strong>This project is built to be scalable, sellable, and production-ready.</strong></p>
+  <p>Ideal for startups, hotels, and hospitality platforms.</p>
 </div>
