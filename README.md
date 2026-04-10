@@ -35,13 +35,13 @@
 <h2>🖥️ Desktop Experience – Editorial Booking Interface</h2>
 
 <p align="center">
-  <img src="https://res.cloudinary.com/daqb5wglu/image/upload/v1768824858/luman-hotel1_v5vv6v.png"
+  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1775584410/Luman_Hotel_zd8avm.png"
        width="100%"
        alt="Desktop hotel homepage showcasing editorial layout, hero section, and premium visual hierarchy" />
 </p>
 
 <p align="center">
-  <img src="https://res.cloudinary.com/daqb5wglu/image/upload/v1768824842/luman-hotel2_t7ysf0.png"
+  <img src="https://res.cloudinary.com/dyefyrszz/image/upload/v1775581914/luman-hotel2_t7ysf0_oyzxx5.png"
        width="100%"
        alt="Desktop hotel website displaying room highlights, amenities, and storytelling-driven layout" />
 </p>
